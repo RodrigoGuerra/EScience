@@ -1,0 +1,23 @@
+user{
+	name:
+	avatar:
+	JoinDate:
+	LastSeen:
+	Email:
+	website:
+	Location:
+	Frieds:
+	NumberFriended:
+	Groups:
+	Files:
+	Packs:
+	Scripts:
+	Credited:
+	Rating:
+	Description:
+	OtherDetails:
+	Interests:
+	Field/industry:
+	Occupation/roles:
+	Organisations:
+}

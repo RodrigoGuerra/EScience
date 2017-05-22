@@ -9,7 +9,6 @@ from bson.objectid import ObjectId
 
 
 def home(request):
-	id = create_user({'nome': "Thiago Cordeiro",'idade': 25})
 	users = get_users()
 	parametros = {"users": users}
 	t = get_template("home.html")

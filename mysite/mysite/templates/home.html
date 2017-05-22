@@ -46,14 +46,14 @@
     </div>
   </div>
 </nav>
-{% if users %}
+<!--{% if users %}
    There are {{ users|length }} records:
     {% for e in users %}
        {{ e.nome }}
    {% endfor %}
 {% else %}
    There are no records in the system
-{% endif %}
+{% endif %}-->
 <div class="container">
   <div class="row" id ="pasteTree">
   </div>
@@ -78,20 +78,21 @@
                 </ul>
         </div>
       </div>
+    </div>
     <div class="col-md-3" id="sidebar">
       <div class="title">
         Content Stats
       </div>
       <div class="content stats">
         <ul>
-          <li></li>
+          <li>{{users|length}} Members</li>
         </ul>
       </div>
     </div>
     
+
   </div>
 </div>
-    </div>
 <div id="footer">
   <div class="container">
     <div class="row">

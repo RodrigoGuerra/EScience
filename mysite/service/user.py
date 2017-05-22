@@ -1,10 +1,32 @@
 from libs.mongo import db, stringify_id
 from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
+import pymongo
 
 def get_users():
     users = []
     for user in db.users.find({}):
+        stringify_id(user)
+        users.append(user)
+    return users
+
+def get_users_rating():
+    users= []
+    for user in db.users.find({}).sort('credited', -1).limit(10):
+        stringify_id(user)
+        users.append(user)
+    return users
+
+def get_users_credited():
+    users = []
+    for user in db.users.find({}).sort('rating',-1).limit(10):
+        stringify_id(user)
+        users.append(user)
+    return users
+
+def get_user_mostFriends():
+    users = []
+    for user in db.users.find({}).sort('NumberFriended', -1).limit(10):
         stringify_id(user)
         users.append(user)
     return users
