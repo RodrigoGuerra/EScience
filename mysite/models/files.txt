@@ -1,0 +1,24 @@
+file{
+	title:
+	version:
+	createdOn:
+	lastEdited:
+	FileName:
+	filesize:
+	SHA1:??
+	ContentType:
+	Description:
+	Uploader:
+	License:
+	Credits:
+	Attributions:
+	Tags:
+	Type:
+	SharedGroups:
+	FeaturedInPacks:
+	AttibutedBy:
+	FavouritedBy:
+	Downloads:
+	Views:
+	Comments:
+}
