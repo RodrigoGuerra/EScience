@@ -4,7 +4,7 @@ from service.files import *
 
 def files(request):
 	file = {
-	'title':'arquivo',
+	'Title':'arquivo',
 	'version':'1.0',
 	'createdOn':'22/05/2017',
 	'lastEdited':'22/05/2017',

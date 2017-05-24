@@ -1,0 +1,25 @@
+Script{
+	'Authors':,
+	'Title',
+	'Uploader':,
+	'License':,
+	'Description':,
+	'Version':,
+	'createdOn':,
+	'lastEdited':,
+	'Credits':,
+	'Attribuitions':,
+	'Tags':,
+	'SharedGroups':,
+	'FeaturedPacks':,
+	'FavouritedBy':,
+	'Views':,
+	'Downloads':,
+	'Inputs':,
+	'Outputs':,
+	'Citations':,
+	'Reviews':,
+	'Comments':,
+	'PyVersion':
+
+}

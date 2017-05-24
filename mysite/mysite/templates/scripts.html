@@ -4,11 +4,12 @@
 <!-- links do bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<title>Users</title>
+	<title>Scripts</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+    <div class="col-md-2"></div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#">MyScripts</a>
     </div>
@@ -43,13 +44,56 @@
 <div class="container">
 	<div class="row" id ="pasteTree">
   	</div>
-  	<div id ="usersContainer">
-  		<ul>
-  			<li>Invite</li>
-  			<li>View All Users</li>
-  			<li>View TimeLine</li>
-  		</ul>
-  	</div>
+    <h1>Files</h1>
+  	<div class="col-md-3 filter">
+
+    </div>
+    <div class="col-md-9 pages">
+      <div class="pagination">
+
+      </div>
+      <div class="searchBox">
+        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="rowContent">
+        <div class="fileContent">
+          {%for s in scripts%}
+              <div class="row userItem">
+
+                    <div class="col-xs-2">
+                      <p>{{s.PyVersion}}</p>
+                      <p>Uploader</p>
+                      <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                      <p>{{s.Uploader}}</p>
+                    </div>
+                    <div class="col-xs-8 userContent">
+                      <div class="row">
+                        <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{s.Title}}</p></span>
+                        <button type="button" class="btn btn-info">Download</button>
+                      </div>
+                      <div class="scriptDescription">
+                        {{s.Description}}
+                      </div>
+                      <p><strong>Created:</strong> {{s.createdOn}} | <strong>Last updated:</strong>{{s.lastEdited}} </p>
+                      <p><strong>Credits:</strong>
+                      {%for c in s.Credits%}
+                        {{c.Name}}
+                      {% endfor%}
+                      </p>
+                    </div>
+                </div>
+              {%endfor%}
+
+        </div>
+      </div>
+    </div>
 </div>
 <div id="footer">
   <div class="container">

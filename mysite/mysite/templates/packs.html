@@ -4,11 +4,12 @@
 <!-- links do bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<title>Users</title>
+	<title>Packs</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+    <div class="col-md-2"></div>
     <div class="navbar-header">
       <a class="navbar-brand" href="#">MyScripts</a>
     </div>
@@ -43,13 +44,65 @@
 <div class="container">
 	<div class="row" id ="pasteTree">
   	</div>
-  	<div id ="usersContainer">
-  		<ul>
-  			<li>Invite</li>
-  			<li>View All Users</li>
-  			<li>View TimeLine</li>
-  		</ul>
-  	</div>
+    <h1>Files</h1>
+  	<div class="col-md-3 filter">
+
+    </div>
+    <div class="col-md-9 pages">
+      <div class="pagination">
+
+      </div>
+      <div class="searchBox">
+        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+      <div class="rowContent">
+        <div class="fileContent">
+          {%for p in packs%}
+              <div class="row userItem">
+                  <div class="row">
+                    <div class="col-xs-2">
+                      <p>Creator</p>
+                      <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                      <p>{{p.Uploader}}</p>
+                    </div>
+                    <div class="col-xs-8 userContent">
+                      <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{p.Title}}</p></span>
+                      <p><strong>Created:</strong> {{p.CreatedOn}} | <strong>Last updated:</strong>{{p.LastEdited}} </p>
+                 </div>
+                    <div class="col-xs-2 sidemenu">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true">
+                        <a href="#">View</a>
+                      </span>
+                      <span class="glyphicon glyphicon-send" aria-hidden="true">
+                        <a href="">Download</a>
+                      </span>
+                    </div>
+                  </div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-10">
+                  <textarea class="form-group">
+                    {{p.Description}}
+                  </textarea>
+                  <p><strong>{{p.Items|length}} items in this pack</strong></p>
+                  <p><a href="#">Comments: {{p.Comments|length }}</a> | <strong>Viewed:</strong> {{p.Views}} times | <strong>Downloaded:</strong>{{p.Downloads}}</p>
+                  <a href="#">Tags:</a>
+                  <p>{%for tag in file.Tags %}
+                      <a href="#">{{tag.name }}</a>
+                      |
+                      {%endfor%}
+                  </p>
+                </div>
+              </div>
+              {%endfor%}
+        </div>
+      </div>
+    </div>
 </div>
 <div id="footer">
   <div class="container">
