@@ -44,13 +44,161 @@
 <div class="container">
 	<div class="row" id ="pasteTree">
   	</div>
-  	<div id ="usersContainer">
-  		<ul>
-  			<li>Invite</li>
-  			<li>View All Users</li>
-  			<li>View TimeLine</li>
-  		</ul>
-  	</div>
+    <div class="row buttonlist">
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button type="button"class="btn btn-secondary" >Create New Group</button>
+      </div>
+      <div class="col-md-3">
+        <button  type="button"class="btn btn-secondary" >View All Groups </button >
+      </div>
+    </div>
+    <div class="col-md-12">
+      <p>Top 50 tags for Groups [<a href="">See All Tags</a>]</p>
+    </div>
+    <!-- TABELA DE TAGS TODO: -->
+    <div class="TagGroups">
+
+    </div>
+    <div class="col-md-12">
+      <p>What is a Groups?</p>
+    </div>
+    <p>
+      Groups are designed to allow people who are collaborating to share and manage data. A user can set up a group for which they become the administrator and they can invite other users to join. Other users can also request to join the group. Groups may be set up for people who: work on the same projects, are in the same real world groups, work at the same institutions or just share the same research interests.
+    </p>
+
+  <!-- DIV MAIS IMPORTANTE, DIV DAS TABS -->
+  <div class="bs-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#MostRecent">Most Recent</a></li>
+        <li><a data-toggle="tab" href="#MostMenbers">Most Members</a></li>
+        <li><a data-toggle="tab" href="#MostShared">Most Shared Items</a></li>
+        <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="MostRecent" class="tab-pane fade in active">
+            <div id="listMostFriends">
+              {%for user in friend%}
+              <div class="row userItem">
+                <div class="col-xs-2">
+                  <p>Member</p>
+                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                  <p>{{user.name}}</p>
+                </div>
+                <div class="col-xs-8 userContent">
+                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
+                  <p>Joined: {{user.JoinDate}}</p>
+                  <p>Description: {{user.Description}}</p>
+                  <p>Last active{{user.LastSeen}}</p>
+                  <p>WebSite{{user.website}}</p>
+                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                </div>
+                <div class="col-xs-2 sidemenu">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    <a href="#">View</a>
+                  </span>
+                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                    <a href="">Mensage</a>
+                  </span>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+        </div>
+      
+        <div id="MostMenbers" class="tab-pane fade">
+            <div id="listMostMembers">
+              {%for user in credited%}
+              <div class="row userItem">
+                <div class="col-xs-2">
+                  <p>Member</p>
+                  <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
+                  <p>{{user.name}}</p>
+                </div>
+                <div class="col-xs-8 userContent">
+                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
+                  <p>Joined: {{user.JoinDate}}</p>
+                  <p>Description: {{user.Description}}</p>
+                  <p>Last active{{user.LastSeen}}</p>
+                  <p>WebSite{{user.website}}</p>
+                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                </div>
+                <div class="col-xs-2 sidemenu">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    <a href="#">View</a>
+                  </span>
+                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                    <a href="">Mensage</a>
+                  </span>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+        </div>
+
+        <div id="MostShared" class="tab-pane fade">
+           <div id="listHighRated">
+              {%for user in rated %}
+              <div class="row userItem">
+                <div class="col-xs-2">
+                  <p>Member</p>
+                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                  <p>{{user.name}}</p>
+                </div>
+                <div class="col-xs-8 userContent">
+                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
+                  <p>Joined: {{user.JoinDate}}</p>
+                  <p>Description: {{user.Description}}</p>
+                  <p>Last active{{user.LastSeen}}</p>
+                  <p>WebSite{{user.website}}</p>
+                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                </div>
+                <div class="col-xs-2 sidemenu">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    <a href="#">View</a>
+                  </span>
+                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                    <a href="">Mensage</a>
+                  </span>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+        </div>
+
+        <div id="MostCredited" class="tab-pane fade">
+           <div id="listMostCredited">
+              {%for user in rated %}
+              <div class="row userItem">
+                <div class="col-xs-2">
+                  <p>Member</p>
+                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                  <p>{{user.name}}</p>
+                </div>
+                <div class="col-xs-8 userContent">
+                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
+                  <p>Joined: {{user.JoinDate}}</p>
+                  <p>Description: {{user.Description}}</p>
+                  <p>Last active{{user.LastSeen}}</p>
+                  <p>WebSite{{user.website}}</p>
+                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                </div>
+                <div class="col-xs-2 sidemenu">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    <a href="#">View</a>
+                  </span>
+                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                    <a href="">Mensage</a>
+                  </span>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+        </div>
+
+    </div>
+
+</div>
 </div>
 <div id="footer">
   <div class="container">
