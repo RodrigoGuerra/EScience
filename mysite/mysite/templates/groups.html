@@ -77,59 +77,85 @@
     </ul>
     <div class="tab-content">
         <div id="MostRecent" class="tab-pane fade in active">
-            <div id="listMostFriends">
-              {%for user in friend%}
+            <div id="listMostRecents">
+              {%for g in groupsMR%}
               <div class="row userItem">
                 <div class="col-xs-2">
-                  <p>Member</p>
+                  <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
+                  <p>{{g.Owner}}</p>
                 </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active{{user.LastSeen}}</p>
-                  <p>WebSite{{user.website}}</p>
-                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                <div class="row ">
+                  <div class="col-xs-8 userContent">
+                    <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                    <p>Unique Name: {{g.UniqueName}}</p>
+                    <p>Created: {{g.CreatedAt}}</p>
+                  </div>
+                  <div class="col-xs-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                  </div>
                 </div>
-                <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
+                <div>
+                  <div class="groupDescpt">
+                    <p>{{g.Description}}</p>
+                  </div>
+                  <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
+                  <div class="members">
+                    <p>g.Members|length</p>
+                    {%for m in g.Members%}
+                      <P>m.Name</P>
+                    {%endfor%}
+                  </div>
+                  <div class="Tags">
+                    {%for t in g.Tags%}
+                      <p>t.Name</p>
+                    {%endfor%}
+                  </div>
                 </div>
               </div>
               {%endfor%}
             </div>
         </div>
-      
+
         <div id="MostMenbers" class="tab-pane fade">
             <div id="listMostMembers">
-              {%for user in credited%}
+             {%for g in groupsMM%}
               <div class="row userItem">
                 <div class="col-xs-2">
-                  <p>Member</p>
-                  <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
+                  <p>Owner</p>
+                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                  <p>{{g.Owner}}</p>
                 </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active{{user.LastSeen}}</p>
-                  <p>WebSite{{user.website}}</p>
-                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                <div class="row ">
+                  <div class="col-xs-8 userContent">
+                    <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                    <p>Unique Name: {{g.UniqueName}}</p>
+                    <p>Created: {{g.CreatedAt}}</p>
+                  </div>
+                  <div class="col-xs-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                  </div>
                 </div>
-                <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
+                <div>
+                  <div class="groupDescpt">
+                    <p>{{g.Description}}</p>
+                  </div>
+                  <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
+                  <div class="members">
+                    <p>g.Members|length</p>
+                    {%for m in g.Members%}
+                      <P>m.Name</P>
+                    {%endfor%}
+                  </div>
+                  <div class="Tags">
+                    {%for t in g.Tags%}
+                      <p>t.Name</p>
+                    {%endfor%}
+                  </div>
                 </div>
               </div>
               {%endfor%}
@@ -138,28 +164,41 @@
 
         <div id="MostShared" class="tab-pane fade">
            <div id="listHighRated">
-              {%for user in rated %}
+             {%for g in groupsMS%}
               <div class="row userItem">
                 <div class="col-xs-2">
-                  <p>Member</p>
+                  <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
+                  <p>{{g.Owner}}</p>
                 </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active{{user.LastSeen}}</p>
-                  <p>WebSite{{user.website}}</p>
-                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                <div class="row ">
+                  <div class="col-xs-8 userContent">
+                    <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                    <p>Unique Name: {{g.UniqueName}}</p>
+                    <p>Created: {{g.CreatedAt}}</p>
+                  </div>
+                  <div class="col-xs-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                  </div>
                 </div>
-                <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
+                <div>
+                  <div class="groupDescpt">
+                    <p>{{g.Description}}</p>
+                  </div>
+                  <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
+                  <div class="members">
+                    <p>g.Members|length</p>
+                    {%for m in g.Members%}
+                      <P>m.Name</P>
+                    {%endfor%}
+                  </div>
+                  <div class="Tags">
+                    {%for t in g.Tags%}
+                      <p>t.Name</p>
+                    {%endfor%}
+                  </div>
                 </div>
               </div>
               {%endfor%}
@@ -168,28 +207,41 @@
 
         <div id="MostCredited" class="tab-pane fade">
            <div id="listMostCredited">
-              {%for user in rated %}
+              {%for g in groupsMC%}
               <div class="row userItem">
                 <div class="col-xs-2">
-                  <p>Member</p>
+                  <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
+                  <p>{{g.Owner}}</p>
                 </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active{{user.LastSeen}}</p>
-                  <p>WebSite{{user.website}}</p>
-                  <p>Field/Industry{{user.Fieldindustry}}</p>
+                <div class="row ">
+                  <div class="col-xs-8 userContent">
+                    <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                    <p>Unique Name: {{g.UniqueName}}</p>
+                    <p>Created: {{g.CreatedAt}}</p>
+                  </div>
+                  <div class="col-xs-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                  </div>
                 </div>
-                <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
+                <div>
+                  <div class="groupDescpt">
+                    <p>{{g.Description}}</p>
+                  </div>
+                  <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
+                  <div class="members">
+                    <p>g.Members|length</p>
+                    {%for m in g.Members%}
+                      <P>m.Name</P>
+                    {%endfor%}
+                  </div>
+                  <div class="Tags">
+                    {%for t in g.Tags%}
+                      <p>t.Name</p>
+                    {%endfor%}
+                  </div>
                 </div>
               </div>
               {%endfor%}

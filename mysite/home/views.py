@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template.loader import get_template
 from service.user import *
+from io import BytesIO
 
 from libs.mongo import db, stringify_id
 from pymongo.collection import ReturnDocument

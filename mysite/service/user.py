@@ -1,4 +1,4 @@
-from libs.mongo import db, stringify_id
+from libs.mongo import *
 from pymongo.collection import ReturnDocument
 from bson.objectid import ObjectId
 import pymongo
@@ -30,6 +30,11 @@ def get_user_mostFriends():
         stringify_id(user)
         users.append(user)
     return users
+
+def create_file(file):
+    fs.put( file)
+    stringify_id(file)
+    return ObjectId
 
 def create_user(user):
     db.users.insert_one(user)
