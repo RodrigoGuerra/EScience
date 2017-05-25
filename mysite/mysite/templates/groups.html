@@ -80,37 +80,41 @@
             <div id="listMostRecents">
               {%for g in groupsMR%}
               <div class="row userItem">
-                <div class="col-xs-2">
+                <div class="col-md-2">
                   <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                   <p>{{g.Owner}}</p>
                 </div>
-                <div class="row ">
-                  <div class="col-xs-8 userContent">
+                <div class="col-md-10">
+                  <div class="row ">
+                  <div class="col-md-8 userContent">
                     <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
                     <p>Unique Name: {{g.UniqueName}}</p>
                     <p>Created: {{g.CreatedAt}}</p>
                   </div>
-                  <div class="col-xs-2 sidemenu">
+                  <div class="col-md-2 sidemenu">
                     <span class="glyphicon glyphicon-search" aria-hidden="true">
                       <a href="#">View</a>
                     </span>
                   </div>
                 </div>
+                </div>
+
                 <div>
                   <div class="groupDescpt">
                     <p>{{g.Description}}</p>
                   </div>
                   <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
                   <div class="members">
-                    <p>g.Members|length</p>
+                    <p><strong>Members(s):{{g.Members|length}}</strong></p>
                     {%for m in g.Members%}
-                      <P>m.Name</P>
+                      <P>{{m.Name}}</P>
                     {%endfor%}
                   </div>
                   <div class="Tags">
+                    <a href="">Tags:</a>
                     {%for t in g.Tags%}
-                      <p>t.Name</p>
+                      <p>{{t.Name}}</p>
                     {%endfor%}
                   </div>
                 </div>
@@ -123,37 +127,41 @@
             <div id="listMostMembers">
              {%for g in groupsMM%}
               <div class="row userItem">
-                <div class="col-xs-2">
+                <div class="col-md-2">
                   <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                   <p>{{g.Owner}}</p>
                 </div>
-                <div class="row ">
-                  <div class="col-xs-8 userContent">
+                <div class="col-md-10">
+                  <div class="row ">
+                  <div class="col-md-8 userContent">
                     <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
                     <p>Unique Name: {{g.UniqueName}}</p>
                     <p>Created: {{g.CreatedAt}}</p>
                   </div>
-                  <div class="col-xs-2 sidemenu">
+                  <div class="col-md-2 sidemenu">
                     <span class="glyphicon glyphicon-search" aria-hidden="true">
                       <a href="#">View</a>
                     </span>
                   </div>
                 </div>
+                </div>
+
                 <div>
                   <div class="groupDescpt">
                     <p>{{g.Description}}</p>
                   </div>
                   <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
                   <div class="members">
-                    <p>g.Members|length</p>
+                    <p><strong>Members(s):{{g.Members|length}}</strong></p>
                     {%for m in g.Members%}
-                      <P>m.Name</P>
+                      <P>{{m.Name}}</P>
                     {%endfor%}
                   </div>
                   <div class="Tags">
+                    <a href="">Tags:</a>
                     {%for t in g.Tags%}
-                      <p>t.Name</p>
+                      <p>{{t.Name}}</p>
                     {%endfor%}
                   </div>
                 </div>
@@ -165,38 +173,42 @@
         <div id="MostShared" class="tab-pane fade">
            <div id="listHighRated">
              {%for g in groupsMS%}
-              <div class="row userItem">
-                <div class="col-xs-2">
+                <div class="row userItem">
+                <div class="col-md-2">
                   <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                   <p>{{g.Owner}}</p>
                 </div>
-                <div class="row ">
-                  <div class="col-xs-8 userContent">
+                <div class="col-md-10">
+                  <div class="row ">
+                  <div class="col-md-8 userContent">
                     <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
                     <p>Unique Name: {{g.UniqueName}}</p>
                     <p>Created: {{g.CreatedAt}}</p>
                   </div>
-                  <div class="col-xs-2 sidemenu">
+                  <div class="col-md-2 sidemenu">
                     <span class="glyphicon glyphicon-search" aria-hidden="true">
                       <a href="#">View</a>
                     </span>
                   </div>
                 </div>
+                </div>
+
                 <div>
                   <div class="groupDescpt">
                     <p>{{g.Description}}</p>
                   </div>
                   <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
                   <div class="members">
-                    <p>g.Members|length</p>
+                    <p><strong>Members(s):{{g.Members|length}}</strong></p>
                     {%for m in g.Members%}
-                      <P>m.Name</P>
+                      <P>{{m.Name}}</P>
                     {%endfor%}
                   </div>
                   <div class="Tags">
+                    <a href="">Tags:</a>
                     {%for t in g.Tags%}
-                      <p>t.Name</p>
+                      <p>{{t.Name}}</p>
                     {%endfor%}
                   </div>
                 </div>
@@ -208,38 +220,42 @@
         <div id="MostCredited" class="tab-pane fade">
            <div id="listMostCredited">
               {%for g in groupsMC%}
-              <div class="row userItem">
-                <div class="col-xs-2">
+               <div class="row userItem">
+                <div class="col-md-2">
                   <p>Owner</p>
                   <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                   <p>{{g.Owner}}</p>
                 </div>
-                <div class="row ">
-                  <div class="col-xs-8 userContent">
+                <div class="col-md-10">
+                  <div class="row ">
+                  <div class="col-md-8 userContent">
                     <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{G.UniqueName}}</p></span>
                     <p>Unique Name: {{g.UniqueName}}</p>
                     <p>Created: {{g.CreatedAt}}</p>
                   </div>
-                  <div class="col-xs-2 sidemenu">
+                  <div class="col-md-2 sidemenu">
                     <span class="glyphicon glyphicon-search" aria-hidden="true">
                       <a href="#">View</a>
                     </span>
                   </div>
                 </div>
+                </div>
+
                 <div>
                   <div class="groupDescpt">
                     <p>{{g.Description}}</p>
                   </div>
                   <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.announcements}} announcements</strong></p>
                   <div class="members">
-                    <p>g.Members|length</p>
+                    <p><strong>Members(s):{{g.Members|length}}</strong></p>
                     {%for m in g.Members%}
-                      <P>m.Name</P>
+                      <P>{{m.Name}}</P>
                     {%endfor%}
                   </div>
                   <div class="Tags">
+                    <a href="">Tags:</a>
                     {%for t in g.Tags%}
-                      <p>t.Name</p>
+                      <p>{{t.Name}}</p>
                     {%endfor%}
                   </div>
                 </div>
