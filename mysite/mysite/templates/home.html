@@ -76,6 +76,9 @@
           </div>
           <div class="content">
                 <ul class="list">
+                  {%for a in activity%}
+                  <li>{{a.Title}} by {{a.Uploader}}</li>
+                  {%endfor%}
                 </ul>
         </div>
       </div>
@@ -87,6 +90,10 @@
       <div class="content stats">
         <ul>
           <li>{{users|length}} Members</li>
+          <li>{{groups|length}} Groups</li>
+          <li>{{files|length}} Files</li>
+          <li>{{scripts|length}} Scripts</li>
+          <li>{{packs|length}} Packs</li>
         </ul>
       </div>
     </div>
