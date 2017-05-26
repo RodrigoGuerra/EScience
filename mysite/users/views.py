@@ -5,8 +5,8 @@ from service.user import *
 def users(request):
 
 	
-	create_user({'name':'thiago',
-	             'avatar':'abc',
+	create_user({'Name':'thiago',
+	             'Avatar':'abc',
 	             'JoinDate':'21/05/2017',
 	             'LastSeen':'21/05/2017',
 	             'Location':'Brasil',
@@ -17,12 +17,12 @@ def users(request):
 	             'Scripts':[''],
 	             'Credited':'5',
 	             'Rating':'4.4',
-	             'Description': 'TEXTO GRANDE E SEM SENTIDO.TXT',
+	             'Description': 'TEXTO DESCREVENDO O USER',
 	             'OtherDetails': 'blé',
 	             'Interests':'Nenhum',
-	             'Fieldindustry':'measdfasdfasfd',
-	             'Occupationroles':'sdfasfasfd',
-	             'Organisations':'asdiasdasd'})
+	             'Fieldindustry':'Medical',
+	             'Occupationroles':'Doctor',
+	             'Organisations':'UFF'})
 	
 	#create_user({'name':"thiago",'avatar':'imagem','JoinDate':,'LastSeen':,'Email':,'website':,'Location':,'Frieds':,'NumberFriended':,'Groups':,'Files':,'Packs':,'Scripts':,'Credited':,'Rating':,'Description':,'OtherDetails':,'Interests':,'Field/industry':,'Occupation/roles':,'Organisations':})
 	mostFriend = get_user_mostFriends()

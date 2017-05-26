@@ -4,27 +4,27 @@ from service.script import *
 
 def scripts(request):
 	script={
-	'Authors':[{'name':'Thiago'}],
+	'Authors':[{'Name':'Thiago'}],
 	'Title':'Script1',
 	'Uploader':'Thiago',
 	'License':'FREE',
-	'Description':'ASDHUASDAHSDASKDJASDLKAHSDKJASDJKAHSD',
+	'Description':'Descrição  do script para apresentação',
 	'Version':'1.0',
-	'createdOn':'23/05/2017',
-	'lastEdited':'23/05/2017',
+	'CreatedOn':'23/05/2017',
+	'LastEdited':'23/05/2017',
 	'Credits':[{'Name':'Thiago'}],
 	'Attribuitions':'',
-	'Tags':[{'name':'BOA'},{'nae':'ruim'}],
-	'SharedGroups':[{'name':'nome'}],
+	'Tags':[{'Name':'TAG4'},{'Namw':'Tag1'}],
+	'SharedGroups':[{'Name':'nome'}],
 	'FeaturedPacks':'',
 	'FavouritedBy':'',
 	'Views':4842,
 	'Downloads':4451,
-	'Inputs':'ABC',
-	'Outputs':"DFG",
-	'Citations':'SOW CUTES',
-	'Reviews':'VERY GOOD',
-	'Comments':'blabla',
+	'Inputs':'In1',
+	'Outputs':"Out2",
+	'Citations':'Alguma citação',
+	'Reviews':'Review positiva sobre o script',
+	'Comments':'Comentario sobre o script',
 	'PyVersion':'2,7'
 	
 	}

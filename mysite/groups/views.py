@@ -5,14 +5,14 @@ from service.groups import *
 def groups(request):
 	create_group({
 				'Owner': 'thiago',
-	              'News': 'abc',
+	              'News': 'Novidades do grupo!!',
 	              'Members  ':[ {'Name': 'rodrigo'}, {'Name': 'leonardo'}],
 	              'Description': 'escience',
 	              'SharedItems': '5',
 	              'announcements': 'trabalho',
 	              'Tags': [{'Name':'escience'},{'Name':'scripts'}],
-	              'CreatedAt': 'abc',
-	              'UniqueName': 'Grupo Bolado',
+	              'CreatedAt': '23/03/2017',
+	              'UniqueName': 'Grupo de trabalho',
 	              'CreditedBy': 'rlt'})
 	
 	mostRecent  = get_groups_mostRecent()

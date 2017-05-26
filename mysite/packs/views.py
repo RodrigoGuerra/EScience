@@ -5,9 +5,10 @@ from service.pack import *
 def packs(request):
 	pack={
 	'Title':'Pacote com arquivos testes',
-	'Creator': 'joao goulard',
-	'Description':'pacote com varios arquiovs bolados para uso cauteloso',
-	'Tags':[{'Name':'blabla'}],
+	'Creator': 'RLT',
+	'Uploader':'RLT',
+	'Description':'pacote com varios arquiovs de teste para apresentação',
+	'Tags':[{'Name':'TAG3'}],
 	'SharedGroups':[{'Name': 'pasta'}],
 	'FeaturedPacks':'wer',
 	'FavouriteBy':487,
@@ -16,7 +17,7 @@ def packs(request):
 	'Views':3434,
 	'Downloads':345,
 	'Comments':'werwer',
-	'Items': [{'Name': 'arquivo'}, {'Name': 'arquivo'}, {'Name': 'arquivo'}, {'Name': 'arquivo'}]
+	'Items': [{'Name': 'arquivo1'}, {'Name': 'arquivo2'}, {'Name': 'arquivo3'}, {'Name': 'arquivo4'}]
 	
 	}
 	create_pack(pack)
