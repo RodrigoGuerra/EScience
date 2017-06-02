@@ -1,191 +1,197 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- links do bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript">
+    <!-- links do bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
 $(document).ready(function(){
     $("#tabUsers a").click(function(e){
     	e.preventDefault();
     	$(this).tab('show');
     });
 });
-</script>
 
-  <title>Users</title>
+    </script>
+
+    <title>Users</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="col-md-2"></div>
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">MyScripts</a>
-    </div>
-    <div class="collapse navbar-collapse">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MyScripts</a>
+        </div>
+        <div class="collapse navbar-collapse">
 
-      <ul class="nav navbar-nav">
-        <ul class="nav navbar-nav">
-          <li ><a href="../home">Home</a></li>
-          <li class="active"><a href="../users">Users</a></li>
-          <li><a href="../groups">Groups</a></li>
-          <li><a href="../scripts">Scripts</a></li>
-          <li><a href="../files">Files</a></li>
-          <li><a href="../packs">Packs</a></li>
-        </ul>
-        <form action="" class="navbar-form navbar-left" id="search">
-          <div class="input-group">
-            <input class="form-control" id="query" name="query" placeholder="Search" type="text" />
-            <span class="input-group-btn"> 
-            <input class="btn btn-default" name="commit" type="submit" value="Go" />
+            <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="../home">Home</a></li>
+                    <li class="active"><a href="../users">Users</a></li>
+                    <li><a href="../groups">Groups</a></li>
+                    <li><a href="../scripts">Scripts</a></li>
+                    <li><a href="../files">Files</a></li>
+                    <li><a href="../packs">Packs</a></li>
+                </ul>
+                <form action="" class="navbar-form navbar-left" id="search">
+                    <div class="input-group">
+                        <input class="form-control" id="query" name="query" placeholder="Search" type="text"/>
+                        <span class="input-group-btn">
+            <input class="btn btn-default" name="commit" type="submit" value="Go"/>
             </span>
-          </div>
-        </form>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="">Log in</a>
-        </li>
-        <li><a href="">Register</a></li>  
-      </ul>
+                    </div>
+                </form>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="">Log in</a>
+                </li>
+                <li><a href="">Register</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 <div class="container">
-	<div class="row" id ="pasteTree">
-  	</div>
-  	<div id ="usersContainer">
-  		<ul>
-  			<li>Invite</li>
-  			<li>View All Users</li>
-  			<li>View TimeLine</li>
-  		</ul>
-  	</div>
+    <div class="row" id="pasteTree">
+    </div>
+    <div id="usersContainer">
+        <ul>
+            <li>Invite</li>
+            <li>View All Users</li>
+            <li>View TimeLine</li>
+        </ul>
+    </div>
 
-  <div class="bs-example">
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#MostFriends">Most Friends</a></li>
-        <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
-        <li class="dropdown">
-            <a data-toggle="tab" href="#HighRated">Highest Rated</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div id="MostFriends" class="tab-pane fade in active">
-            <div id="listMostFriends">
-              {%for user in friend%}
-              <div class="row userItem">
-                <div class="col-xs-2">
-                  <p>Member</p>
-                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
-                </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active: {{user.LastSeen}}</p>
-                  <p>WebSite: {{user.website}}</p>
-                  <p>Field/Industry: {{user.Fieldindustry}}</p>
-                </div>
-                <div class="col-xs-2 sidemenu">
+    <div class="bs-example">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#MostFriends">Most Friends</a></li>
+            <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
+            <li class="dropdown">
+                <a data-toggle="tab" href="#HighRated">Highest Rated</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="MostFriends" class="tab-pane fade in active">
+                <div id="listMostFriends">
+                    {%for user in friend%}
+                    <div class="row userItem">
+                        <div class="col-xs-2">
+                            <p>Member</p>
+                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                            <p>{{user.name}}</p>
+                        </div>
+                        <div class="col-xs-8 userContent">
+                            <span class="glyphicon glyphicon-education"
+                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
+                            <p>Joined: {{user.JoinDate}}</p>
+                            <p>Description: {{user.Description}}</p>
+                            <p>Last active: {{user.LastSeen}}</p>
+                            <p>WebSite: {{user.website}}</p>
+                            <p>Field/Industry: {{user.Fieldindustry}}</p>
+                        </div>
+                        <div class="col-xs-2 sidemenu">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
                     <a href="#">View</a>
                   </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
                   </span>
+                        </div>
+                    </div>
+                    {%endfor%}
                 </div>
-              </div>
-              {%endfor%}
             </div>
-        </div>
-        <div id="MostCredited" class="tab-pane fade">
-            <div id="listMostCredited">
-              {%for user in credited%}
-              <div class="row userItem">
-                <div class="col-xs-2">
-                  <p>Member</p>
-                  <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
-                </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active: {{user.LastSeen}}</p>
-                  <p>WebSite: {{user.website}}</p>
-                  <p>Field/Industry: {{user.Fieldindustry}}</p>
-                </div>
-                <div class="col-xs-2 sidemenu">
+            <div id="MostCredited" class="tab-pane fade">
+                <div id="listMostCredited">
+                    {%for user in credited%}
+                    <div class="row userItem">
+                        <div class="col-xs-2">
+                            <p>Member</p>
+                            <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
+                            <p>{{user.name}}</p>
+                        </div>
+                        <div class="col-xs-8 userContent">
+                            <span class="glyphicon glyphicon-education"
+                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
+                            <p>Joined: {{user.JoinDate}}</p>
+                            <p>Description: {{user.Description}}</p>
+                            <p>Last active: {{user.LastSeen}}</p>
+                            <p>WebSite: {{user.website}}</p>
+                            <p>Field/Industry: {{user.Fieldindustry}}</p>
+                        </div>
+                        <div class="col-xs-2 sidemenu">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
                     <a href="#">View</a>
                   </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
                   </span>
+                        </div>
+                    </div>
+                    {%endfor%}
                 </div>
-              </div>
-              {%endfor%}
             </div>
-        </div>
-        <div id="HighRated" class="tab-pane fade">
-           <div id="listHighRated">
-              {%for user in rated %}
-              <div class="row userItem">
-                <div class="col-xs-2">
-                  <p>Member</p>
-                  <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                  <p>{{user.name}}</p>
-                </div>
-                <div class="col-xs-8 userContent">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"><p>name: {{user.name}}</p></span>
-                  <p>Joined: {{user.JoinDate}}</p>
-                  <p>Description: {{user.Description}}</p>
-                  <p>Last active: {{user.LastSeen}}</p>
-                  <p>WebSite: {{user.website}}</p>
-                  <p>Field/Industry: {{user.Fieldindustry}}</p>
-                </div>
-                <div class="col-xs-2 sidemenu">
+            <div id="HighRated" class="tab-pane fade">
+                <div id="listHighRated">
+                    {%for user in rated %}
+                    <div class="row userItem">
+                        <div class="col-xs-2">
+                            <p>Member</p>
+                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                            <p>{{user.name}}</p>
+                        </div>
+                        <div class="col-xs-8 userContent">
+                            <span class="glyphicon glyphicon-education"
+                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
+                            <p>Joined: {{user.JoinDate}}</p>
+                            <p>Description: {{user.Description}}</p>
+                            <p>Last active: {{user.LastSeen}}</p>
+                            <p>WebSite: {{user.website}}</p>
+                            <p>Field/Industry: {{user.Fieldindustry}}</p>
+                        </div>
+                        <div class="col-xs-2 sidemenu">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
                     <a href="#">View</a>
                   </span>
-                  <span class="glyphicon glyphicon-send" aria-hidden="true">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
                   </span>
+                        </div>
+                    </div>
+                    {%endfor%}
                 </div>
-              </div>
-              {%endfor%}
             </div>
+
         </div>
 
     </div>
-
 </div>
-</div>
-
-
 
 
 <div id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 text-left">
-        FUNDED BY: ...
-        <br/><br/>
-        AFFILIATES: ...
-      </div>
-      <div class ="col-md-4 text-center">
-        ABOUT: ...
-      </div>
-      <div class="col-md-4 text-right">
-        blabla: ...
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                FUNDED BY: ...
+                <br/><br/>
+                AFFILIATES: ...
+            </div>
+            <div class="col-md-4 text-center">
+                ABOUT: ...
+            </div>
+            <div class="col-md-4 text-right">
+                blabla: ...
+            </div>
+        </div>
     </div>
-  </div>
-  
+
 </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
-import service.user as service
 import bson.json_util as json
+
+import service.user as service
 
 
 class Users(Resource):

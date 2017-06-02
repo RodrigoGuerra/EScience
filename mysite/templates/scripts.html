@@ -1,117 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- links do bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<title>Scripts</title>
+    <!-- links do bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <title>Scripts</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="col-md-2"></div>
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">MyScripts</a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <ul class="nav navbar-nav">
-          <li><a href="../home">Home</a></li>
-          <li><a href="../users">Users</a></li>
-          <li><a href="../groups">Groups</a></li>
-          <li class="active"><a href="../scripts">Scripts</a></li>
-          <li><a href="../files">Files</a></li>
-          <li><a href="../packs">Packs</a></li>
-        </ul>
-        <form action="" class="navbar-form navbar-left" id="search">
-          <div class="input-group">
-            <input class="form-control" id="query" name="query" placeholder="Search" type="text" />
-            <span class="input-group-btn"> 
-            <input class="btn btn-default" name="commit" type="submit" value="Go" />
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MyScripts</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="../home">Home</a></li>
+                    <li><a href="../users">Users</a></li>
+                    <li><a href="../groups">Groups</a></li>
+                    <li class="active"><a href="../scripts">Scripts</a></li>
+                    <li><a href="../files">Files</a></li>
+                    <li><a href="../packs">Packs</a></li>
+                </ul>
+                <form action="" class="navbar-form navbar-left" id="search">
+                    <div class="input-group">
+                        <input class="form-control" id="query" name="query" placeholder="Search" type="text"/>
+                        <span class="input-group-btn">
+            <input class="btn btn-default" name="commit" type="submit" value="Go"/>
             </span>
-          </div>
-        </form>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="">Log in</a>
-        </li>
-        <li><a href="">Register</a></li>  
-      </ul>
+                    </div>
+                </form>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="">Log in</a>
+                </li>
+                <li><a href="">Register</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 <div class="container">
-	<div class="row" id ="pasteTree">
-  	</div>
+    <div class="row" id="pasteTree">
+    </div>
     <h1>Scripts</h1>
-  	<div class="col-md-3 filter">
+    <div class="col-md-3 filter">
 
     </div>
     <div class="col-md-9 pages">
-      <div class="pagination">
+        <div class="pagination">
 
-      </div>
-      <div class="searchBox">
-        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
+        </div>
+        <div class="searchBox">
+            <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
             <button class="btn btn-secondary" type="button">Go!</button>
           </span>
+            </div>
         </div>
-      </div>
 
-      <div class="rowContent">
-        <div class="fileContent">
-          {%for s in scripts%}
-              <div class="row userItem">
+        <div class="rowContent">
+            <div class="fileContent">
+                {%for s in scripts%}
+                <div class="row userItem">
 
                     <div class="col-xs-2">
-                      <p>{{s.PyVersion}}</p>
-                      <p>Uploader</p>
-                      <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                      <p>{{s.Uploader}}</p>
+                        <p>{{s.PyVersion}}</p>
+                        <p>Uploader</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{s.Uploader}}</p>
                     </div>
                     <div class="col-xs-8 userContent">
-                      <div class="row">
-                        <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{s.Title}}</p></span>
-                        <button type="button" class="btn btn-info">Download</button>
-                      </div>
-                      <div class="scriptDescription">
-                        {{s.Description}}
-                      </div>
-                      <p><strong>Created:</strong> {{s.createdOn}} | <strong>Last updated:</strong>{{s.lastEdited}} </p>
-                      <p><strong>Credits:</strong>
-                      {%for c in s.Credits%}
-                        {{c.Name}}
-                      {% endfor%}
-                      </p>
+                        <div class="row">
+                            <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{s.Title}}</p></span>
+                            <button type="button" class="btn btn-info">Download</button>
+                        </div>
+                        <div class="scriptDescription">
+                            {{s.Description}}
+                        </div>
+                        <p><strong>Created:</strong> {{s.createdOn}} | <strong>Last updated:</strong>{{s.lastEdited}}
+                        </p>
+                        <p><strong>Credits:</strong>
+                            {%for c in s.Credits%}
+                            {{c.Name}}
+                            {% endfor%}
+                        </p>
                     </div>
                 </div>
-              {%endfor%}
+                {%endfor%}
 
+            </div>
         </div>
-      </div>
     </div>
 </div>
 <div id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 text-left">
-        FUNDED BY: ...
-        <br/><br/>
-        AFFILIATES: ...
-      </div>
-      <div class ="col-md-4 text-center">
-        ABOUT: ...
-      </div>
-      <div class="col-md-4 text-right">
-        blabla: ...
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                FUNDED BY: ...
+                <br/><br/>
+                AFFILIATES: ...
+            </div>
+            <div class="col-md-4 text-center">
+                ABOUT: ...
+            </div>
+            <div class="col-md-4 text-right">
+                blabla: ...
+            </div>
+        </div>
     </div>
-  </div>
-  
+
 </div>
 </body>
 </html>
