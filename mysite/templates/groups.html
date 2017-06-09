@@ -1,317 +1,242 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- links do bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script type="text/javascript">
-$(document).ready(function(){
-    $("#tabUsers a").click(function(e){
-    	e.preventDefault();
-    	$(this).tab('show');
-    });
-});
+{% extends "template.html" %}
 
-    </script>
+{% block navigation %}groups{% endblock %}
 
-    <title>Groups</title>
-</head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="col-md-2"></div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MyScripts</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <ul class="nav navbar-nav">
-                    <li><a href="../home">Home</a></li>
-                    <li><a href="../users">Users</a></li>
-                    <li class="active"><a href="../groups">Groups</a></li>
-                    <li><a href="../scripts">Scripts</a></li>
-                    <li><a href="../files">Files</a></li>
-                    <li><a href="../packs">Packs</a></li>
-                </ul>
-                <form action="" class="navbar-form navbar-left" id="search">
-                    <div class="input-group">
-                        <input class="form-control" id="query" name="query" placeholder="Search" type="text"/>
-                        <span class="input-group-btn">
-            <input class="btn btn-default" name="commit" type="submit" value="Go"/>
-            </span>
-                    </div>
-                </form>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="../login">Log in</a>
-                </li>
-                <li><a href="">Register</a></li>
-            </ul>
-        </div>
+{% block content %}
+<div class="row" id="pasteTree">
+</div>
+<div class="row buttonlist">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <button type="button" class="btn btn-secondary">Create New Group</button>
     </div>
-</nav>
-<div class="container">
-    <div class="row" id="pasteTree">
-    </div>
-    <div class="row buttonlist">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <button type="button" class="btn btn-secondary">Create New Group</button>
-        </div>
-        <div class="col-md-3">
-            <button type="button" class="btn btn-secondary">View All Groups</button>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <p>Top 50 tags for Groups [<a href="">See All Tags</a>]</p>
-    </div>
-    <!-- TABELA DE TAGS TODO: -->
-    <div class="TagGroups">
-
-    </div>
-    <div class="col-md-12">
-        <p>What is a Groups?</p>
-    </div>
-    <p>
-        Groups are designed to allow people who are collaborating to share and manage data. A user can set up a group
-        for which they become the administrator and they can invite other users to join. Other users can also request to
-        join the group. Groups may be set up for people who: work on the same projects, are in the same real world
-        groups, work at the same institutions or just share the same research interests.
-    </p>
-
-    <!-- DIV MAIS IMPORTANTE, DIV DAS TABS -->
-    <div class="bs-example">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#MostRecent">Most Recent</a></li>
-            <li><a data-toggle="tab" href="#MostMenbers">Most Members</a></li>
-            <li><a data-toggle="tab" href="#MostShared">Most Shared Items</a></li>
-            <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
-        </ul>
-        <div class="tab-content">
-            <div id="MostRecent" class="tab-pane fade in active">
-                <div id="listMostRecents">
-                    {%for g in groupsMR%}
-                    <div class="row userItem">
-                        <div class="col-md-2">
-                            <p>Owner</p>
-                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                            <p>{{g.Owner}}</p>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="row ">
-                                <div class="col-md-8 userContent">
-                                    <span class="glyphicon glyphicon-education"
-                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
-                                    <p>Unique Name: {{g.UniqueName}}</p>
-                                    <p>Created: {{g.CreatedAt}}</p>
-                                </div>
-                                <div class="col-md-2 sidemenu">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                      <a href="#">View</a>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="groupDescpt">
-                                <p>{{g.Description}}</p>
-                            </div>
-                            <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
-                                announcements</strong></p>
-                            <div class="members">
-                                <p><strong>Members(s):{{g.Members|length}}</strong></p>
-                                {%for m in g.Members%}
-                                <P>{{m.Name}}</P>
-                                {%endfor%}
-                            </div>
-                            <div class="Tags">
-                                <a href="">Tags:</a>
-                                {%for t in g.Tags%}
-                                <p>{{t.Name}}</p>
-                                {%endfor%}
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-
-            <div id="MostMenbers" class="tab-pane fade">
-                <div id="listMostMembers">
-                    {%for g in groupsMM%}
-                    <div class="row userItem">
-                        <div class="col-md-2">
-                            <p>Owner</p>
-                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                            <p>{{g.Owner}}</p>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="row ">
-                                <div class="col-md-8 userContent">
-                                    <span class="glyphicon glyphicon-education"
-                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
-                                    <p>Unique Name: {{g.UniqueName}}</p>
-                                    <p>Created: {{g.CreatedAt}}</p>
-                                </div>
-                                <div class="col-md-2 sidemenu">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                      <a href="#">View</a>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="groupDescpt">
-                                <p>{{g.Description}}</p>
-                            </div>
-                            <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
-                                announcements</strong></p>
-                            <div class="members">
-                                <p><strong>Members(s):{{g.Members|length}}</strong></p>
-                                {%for m in g.Members%}
-                                <P>{{m.Name}}</P>
-                                {%endfor%}
-                            </div>
-                            <div class="Tags">
-                                <a href="">Tags:</a>
-                                {%for t in g.Tags%}
-                                <p>{{t.Name}}</p>
-                                {%endfor%}
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-
-            <div id="MostShared" class="tab-pane fade">
-                <div id="listHighRated">
-                    {%for g in groupsMS%}
-                    <div class="row userItem">
-                        <div class="col-md-2">
-                            <p>Owner</p>
-                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                            <p>{{g.Owner}}</p>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="row ">
-                                <div class="col-md-8 userContent">
-                                    <span class="glyphicon glyphicon-education"
-                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
-                                    <p>Unique Name: {{g.UniqueName}}</p>
-                                    <p>Created: {{g.CreatedAt}}</p>
-                                </div>
-                                <div class="col-md-2 sidemenu">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                      <a href="#">View</a>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="groupDescpt">
-                                <p>{{g.Description}}</p>
-                            </div>
-                            <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
-                                announcements</strong></p>
-                            <div class="members">
-                                <p><strong>Members(s):{{g.Members|length}}</strong></p>
-                                {%for m in g.Members%}
-                                <P>{{m.Name}}</P>
-                                {%endfor%}
-                            </div>
-                            <div class="Tags">
-                                <a href="">Tags:</a>
-                                {%for t in g.Tags%}
-                                <p>{{t.Name}}</p>
-                                {%endfor%}
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-
-            <div id="MostCredited" class="tab-pane fade">
-                <div id="listMostCredited">
-                    {%for g in groupsMC%}
-                    <div class="row userItem">
-                        <div class="col-md-2">
-                            <p>Owner</p>
-                            <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                            <p>{{g.Owner}}</p>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="row ">
-                                <div class="col-md-8 userContent">
-                                    <span class="glyphicon glyphicon-education"
-                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
-                                    <p>Unique Name: {{g.UniqueName}}</p>
-                                    <p>Created: {{g.CreatedAt}}</p>
-                                </div>
-                                <div class="col-md-2 sidemenu">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                      <a href="#">View</a>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="groupDescpt">
-                                <p>{{g.Description}}</p>
-                            </div>
-                            <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
-                                announcements</strong></p>
-                            <div class="members">
-                                <p><strong>Members(s):{{g.Members|length}}</strong></p>
-                                {%for m in g.Members%}
-                                <P>{{m.Name}}</P>
-                                {%endfor%}
-                            </div>
-                            <div class="Tags">
-                                <a href="">Tags:</a>
-                                {%for t in g.Tags%}
-                                <p>{{t.Name}}</p>
-                                {%endfor%}
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-
-        </div>
-
+    <div class="col-md-3">
+        <button type="button" class="btn btn-secondary">View All Groups</button>
     </div>
 </div>
-<div id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 text-left">
-                FUNDED BY: ...
-                <br/><br/>
-                AFFILIATES: ...
-            </div>
-            <div class="col-md-4 text-center">
-                ABOUT: ...
-            </div>
-            <div class="col-md-4 text-right">
-                blabla: ...
+<div class="col-md-12">
+    <p>Top 50 tags for Groups [<a href="">See All Tags</a>]</p>
+</div>
+<!-- TABELA DE TAGS TODO: -->
+<div class="TagGroups">
+
+</div>
+<div class="col-md-12">
+    <p>What is a Groups?</p>
+</div>
+<p>
+    Groups are designed to allow people who are collaborating to share and manage data. A user can set up a group
+    for which they become the administrator and they can invite other users to join. Other users can also request to
+    join the group. Groups may be set up for people who: work on the same projects, are in the same real world
+    groups, work at the same institutions or just share the same research interests.
+</p>
+
+<!-- DIV MAIS IMPORTANTE, DIV DAS TABS -->
+<div class="bs-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#MostRecent">Most Recent</a></li>
+        <li><a data-toggle="tab" href="#MostMenbers">Most Members</a></li>
+        <li><a data-toggle="tab" href="#MostShared">Most Shared Items</a></li>
+        <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="MostRecent" class="tab-pane fade in active">
+            <div id="listMostRecents">
+                {%for g in groupsMR%}
+                <div class="row userItem">
+                    <div class="col-md-2">
+                        <p>Owner</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{g.Owner}}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row ">
+                            <div class="col-md-8 userContent">
+                                    <span class="glyphicon glyphicon-education"
+                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                                <p>Unique Name: {{g.UniqueName}}</p>
+                                <p>Created: {{g.CreatedAt}}</p>
+                            </div>
+                            <div class="col-md-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="groupDescpt">
+                            <p>{{g.Description}}</p>
+                        </div>
+                        <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
+                            announcements</strong></p>
+                        <div class="members">
+                            <p><strong>Members(s):{{g.Members|length}}</strong></p>
+                            {%for m in g.Members%}
+                            <P>{{m.Name}}</P>
+                            {%endfor%}
+                        </div>
+                        <div class="Tags">
+                            <a href="">Tags:</a>
+                            {%for t in g.Tags%}
+                            <p>{{t.Name}}</p>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
             </div>
         </div>
+
+        <div id="MostMenbers" class="tab-pane fade">
+            <div id="listMostMembers">
+                {%for g in groupsMM%}
+                <div class="row userItem">
+                    <div class="col-md-2">
+                        <p>Owner</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{g.Owner}}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row ">
+                            <div class="col-md-8 userContent">
+                                    <span class="glyphicon glyphicon-education"
+                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                                <p>Unique Name: {{g.UniqueName}}</p>
+                                <p>Created: {{g.CreatedAt}}</p>
+                            </div>
+                            <div class="col-md-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="groupDescpt">
+                            <p>{{g.Description}}</p>
+                        </div>
+                        <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
+                            announcements</strong></p>
+                        <div class="members">
+                            <p><strong>Members(s):{{g.Members|length}}</strong></p>
+                            {%for m in g.Members%}
+                            <P>{{m.Name}}</P>
+                            {%endfor%}
+                        </div>
+                        <div class="Tags">
+                            <a href="">Tags:</a>
+                            {%for t in g.Tags%}
+                            <p>{{t.Name}}</p>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+        <div id="MostShared" class="tab-pane fade">
+            <div id="listHighRated">
+                {%for g in groupsMS%}
+                <div class="row userItem">
+                    <div class="col-md-2">
+                        <p>Owner</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{g.Owner}}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row ">
+                            <div class="col-md-8 userContent">
+                                    <span class="glyphicon glyphicon-education"
+                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                                <p>Unique Name: {{g.UniqueName}}</p>
+                                <p>Created: {{g.CreatedAt}}</p>
+                            </div>
+                            <div class="col-md-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="groupDescpt">
+                            <p>{{g.Description}}</p>
+                        </div>
+                        <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
+                            announcements</strong></p>
+                        <div class="members">
+                            <p><strong>Members(s):{{g.Members|length}}</strong></p>
+                            {%for m in g.Members%}
+                            <P>{{m.Name}}</P>
+                            {%endfor%}
+                        </div>
+                        <div class="Tags">
+                            <a href="">Tags:</a>
+                            {%for t in g.Tags%}
+                            <p>{{t.Name}}</p>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+        <div id="MostCredited" class="tab-pane fade">
+            <div id="listMostCredited">
+                {%for g in groupsMC%}
+                <div class="row userItem">
+                    <div class="col-md-2">
+                        <p>Owner</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{g.Owner}}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row ">
+                            <div class="col-md-8 userContent">
+                                    <span class="glyphicon glyphicon-education"
+                                          aria-hidden="true"><p>{{G.UniqueName}}</p></span>
+                                <p>Unique Name: {{g.UniqueName}}</p>
+                                <p>Created: {{g.CreatedAt}}</p>
+                            </div>
+                            <div class="col-md-2 sidemenu">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                      <a href="#">View</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="groupDescpt">
+                            <p>{{g.Description}}</p>
+                        </div>
+                        <p><strong>{{g.SharedItems|length}} Shared item(s) | {{g.Announcements}}
+                            announcements</strong></p>
+                        <div class="members">
+                            <p><strong>Members(s):{{g.Members|length}}</strong></p>
+                            {%for m in g.Members%}
+                            <P>{{m.Name}}</P>
+                            {%endfor%}
+                        </div>
+                        <div class="Tags">
+                            <a href="">Tags:</a>
+                            {%for t in g.Tags%}
+                            <p>{{t.Name}}</p>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
     </div>
 
 </div>
-</body>
-</html>
+{% endblock %}

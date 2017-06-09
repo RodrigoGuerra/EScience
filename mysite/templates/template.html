@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- links do bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="509268929644-6sgar4mtbl40qcqp8d30ibodaui636b7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script type="text/javascript">
+$(document).ready(function(){
+    $("#tabUsers a").click(function(e){
+    	e.preventDefault();
+    	$(this).tab('show');
+    });
+
+    var active = "{% block navigation %}{% endblock %}";
+    var titles = {
+        files: "Files",
+        groups: "Groups",
+        home: "Home",
+        login: "Login",
+        packs: "Packs",
+        scripts: "Scripts",
+        users: "Users",
+    };
+    if (active) {
+        $(".navbar-nav ." + active).addClass("active");
+        document.title = "MyScripts -   " + titles[active];
+    }
+});
+
+    </script>
+
+    <title>{% block title %}MyScripts{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MyScripts</a>
+        </div>
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <li class="home"><a href="../home">Home</a></li>
+                    <li class="users"><a href="../users">Users</a></li>
+                    <li class="groups"><a href="../groups">Groups</a></li>
+                    <li class="scripts"><a href="../scripts">Scripts</a></li>
+                    <li class="files"><a href="../files">Files</a></li>
+                    <li class="packs"><a href="../packs">Packs</a></li>
+                </ul>
+                <form action="" class="navbar-form navbar-left" id="search">
+                    <div class="input-group">
+                        <input class="form-control" id="query" name="query" placeholder="Search" type="text"/>
+                        <span class="input-group-btn">
+            <input class="btn btn-default" name="commit" type="submit" value="Go"/>
+            </span>
+                    </div>
+                </form>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="login">
+                    <a href="../login">Log in</a>
+                </li>
+                <li><a href="">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                FUNDED BY: ...
+                <br/><br/>
+                AFFILIATES: ...
+            </div>
+            <div class="col-md-4 text-center">
+                ABOUT: ...
+            </div>
+            <div class="col-md-4 text-right">
+                blabla: ...
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
