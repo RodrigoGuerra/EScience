@@ -1,0 +1,73 @@
+{% extends "template.html" %}
+
+{% block navigation %}files{% endblock %}
+
+{% block content %}
+<div class="row" id="pasteTree">
+</div>
+<h1>Files</h1>
+<div class="col-md-3 filter">
+
+</div>
+<div class="col-md-9 pages">
+    <div class="pagination">
+
+    </div>
+    <div class="searchBox">
+        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+    </div>
+    <div class="rowContent">
+        <div class="fileContent">
+            {%for file in files%}
+            <div class="row userItem">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Uploader</p>
+                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
+                        <p>{{file.Uploader}}</p>
+                    </div>
+                    <div class="col-xs-8 userContent">
+                        <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{file.title}}</p></span>
+                        <p><strong>Created:</strong> {{file.createdOn}} | <strong>Last updated:</strong>{{file.Description}}
+                        </p>
+
+                        <p><strong>Credits:</strong>{{file.Uploader}}</p>
+                        <p><strong>License:</strong>{{file.License}}</p>
+
+                    </div>
+                    <div class="col-xs-2 sidemenu">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true">
+                        <a href="#">View</a>
+                      </span>
+                        <span class="glyphicon glyphicon-send" aria-hidden="true">
+                        <a href="">Mensage</a>
+                      </span>
+                    </div>
+                </div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-10">
+                  <textarea class="form-group">
+                    {{file.Description}}
+                  </textarea>
+                    <p><strong>File type:</strong>{{file.Type}}</p>
+                    <p><a href="#">{{file.Comments|length }}</a> | <strong>Viewed:</strong> {{file.Views}} times |
+                        <strong>Downloaded:</strong>{{file.Downloads}}</p>
+                    <a href="#">Tags:</a>
+                    <p>{%for tag in file.Tags %}
+                        <a href="#">tag.name </a>
+                        |
+                        {%endfor%}
+                    </p>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}
