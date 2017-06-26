@@ -1,0 +1,57 @@
+{% extends "template.html" %}
+
+{% block navigation %}users{% endblock %}
+
+{% block content %}
+<div class="row" id="pasteTree">
+</div>
+
+<div class="row" style="text-align:center;" >
+
+
+        <button>Request Friendship</button>
+        <button>Send message</button>
+
+</div>
+<h4 style="margin-top:25px; text-align:center;"><b>User Profile: {{user.Name}}</b></h4>
+
+<div class="row">
+    <div class="col-sm-2 userDetails">
+        <img src="" alt="" style="width:150px;height:150px;">
+    </div>
+    <div class="col-sm-7 userDetails ">
+        <p><b>Name:</b> {{user.name}}</p>
+        <p><b>Joined:</b> {{user.JoinDate}}</p>
+        <p><b>Last seen:</b> {{user.LastSeen}}</p>
+        <p><b>Email(public): </b> <a> {{user.Email}} </a></p>
+        <p><b>Website:</b> {{user.Website}}</p>
+        <p><b>Location:</b> {{user.Location}}</p>
+    </div>
+    <div class="col-sm-2">
+        <div class="userInfo Sublabel sublabelDetails">
+            <p>{{user.NumberFriended}} Friends</p>
+            <p>{{user.NumberGroups}} Groups</p>
+            <p>{{user.NumberFiles}} Files</p>
+            <p>{{user.NumberPacks}} Packs</p>
+            <p>{{user.NumberScripts}} Scripts</p>
+        </div>
+        <div class="Sublabel sublabelDetails">
+            <p>{{user.Name}} has been credited {{user.Credited}} times</p>
+        </div>
+        <div class="Sublabel sublabelDetails">
+            <p>{{user.Name}} has an average rating of: {{user.Rating}}</p>
+        </div>
+    </div>
+</div>
+<div class="Sublabel sublabelDetails">
+    <p>{{user.Description}}</p>
+</div>
+
+<div class="groupSelection">
+    <p><b>Field/Industry:</b> {{user.Fieldindustry}}</p>
+    <p><b>Occupation/Role(s):</b> {{user.Occupationroles}}</p>
+    <p><b>Organisation(s):</b> {{user.Organisations}}</p>
+    <p><b>Interests:</b> {{user.Interests}}</p>
+</div>
+
+{% endblock %}
