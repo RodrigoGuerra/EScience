@@ -22,8 +22,14 @@ def packs(request):
         'Items': [{'Name': 'arquivo1'}, {'Name': 'arquivo2'}, {'Name': 'arquivo3'}, {'Name': 'arquivo4'}]
 
     }
+    
     create_pack(pack)
     p = get_packs()
     t = get_template("packs.html")
     html = t.render(dict({'packs': p}))
+    return HttpResponse(html)
+
+def newPack(request):
+    t = get_template("newPack.html")
+    html = t.render(dict({}))
     return HttpResponse(html)

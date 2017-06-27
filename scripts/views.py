@@ -37,3 +37,8 @@ def scripts(request):
     t = get_template("scripts.html")
     html = t.render(dict({'scripts': scripts}))
     return HttpResponse(html)
+
+def newScript(request):
+    t = get_template("Newscript.html")
+    html = t.render(dict({}))
+    return HttpResponse(html)

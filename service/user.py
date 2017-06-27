@@ -53,6 +53,10 @@ def update_user(id, user):
     stringify_id(new_user)
     return new_user
 
+def get_user_by_id(id):
+    new_user = db.users.find_one({'_id': ObjectId(id)})
+    stringify_id(new_user)
+    return new_user
 
 def delete_user(id):
     return db.users.find_one_and_delete({'_id': ObjectId(id)})

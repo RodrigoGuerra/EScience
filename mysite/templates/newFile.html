@@ -3,71 +3,335 @@
 {% block navigation %}files{% endblock %}
 
 {% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'files/style.css' %}" />
+<script type = 'text/javascript' src="{% static  'files/File.js' %}"></script>
+
+
+
 <div class="row" id="pasteTree">
 </div>
-<h1>Files</h1>
-<div class="col-md-3 filter">
-
+<h4 align="center">Upload File</h4>
+<form action=""></form>
+<div class="row">
+    <div class="col-sm-3">
+        <h4>File to upload</h4>
+    </div>
+    <div class="col-sm-3">
+        <input id="fileinput" type="file" multiple>
+    </div>
 </div>
-<div class="col-md-9 pages">
-    <div class="pagination">
+<div id="headerFile">
+<h6 id="title">Title:</h6>
+<input id="titleinput" type="text">
 
-    </div>
-    <div class="searchBox">
-        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
-        </div>
-    </div>
-    <div class="rowContent">
-        <div class="fileContent">
-            {%for file in files%}
-            <div class="row userItem">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <p>Uploader</p>
-                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                        <p>{{file.Uploader}}</p>
-                    </div>
-                    <div class="col-xs-8 userContent">
-                        <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{file.title}}</p></span>
-                        <p><strong>Created:</strong> {{file.createdOn}} | <strong>Last updated:</strong>{{file.Description}}
-                        </p>
+ <div class="form-group">
+      <h5><b>Description:</b></h5>
+      <textarea class="form-control" rows="5" id="textDescription"></textarea>
+ </div>
+</div>
 
-                        <p><strong>Credits:</strong>{{file.Uploader}}</p>
-                        <p><strong>License:</strong>{{file.License}}</p>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+     <div class="card" id="tags">
 
-                    </div>
-                    <div class="col-xs-2 sidemenu">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true">
-                        <a href="#">View</a>
-                      </span>
-                        <span class="glyphicon glyphicon-send" aria-hidden="true">
-                        <a href="">Mensage</a>
-                      </span>
+                <div class="card-header cardheader" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Tags
+                     </a>
+                </div>
+
+
+                <div id="collapseOne" class="collapse cardbody" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-block">
+                        <div class="Sublabel">
+                            <p>Here you can add tags to describe this File.</p>
+                        </div>
+                        <h5><b>Tags:</b></h5>
+                        <div class="tagbody">
+                            <div CLASS="content" id="tagContent">
+                                <p>Build up the list of tags below by adding from the two different boxes further below</p>
+                                <div id="tagList"></div>
+                            </div>
+                            <div id="tagSelector" class="content">
+                                <p>Add tags manually:</p>
+                                <input  id="tagText" type="text">
+                                <button id="addTag">Add</button>
+                            </div>
+                            </div>
                     </div>
                 </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">
-                  <textarea class="form-group">
-                    {{file.Description}}
-                  </textarea>
-                    <p><strong>File type:</strong>{{file.Type}}</p>
-                    <p><a href="#">{{file.Comments|length }}</a> | <strong>Viewed:</strong> {{file.Views}} times |
-                        <strong>Downloaded:</strong>{{file.Downloads}}</p>
-                    <a href="#">Tags:</a>
-                    <p>{%for tag in file.Tags %}
-                        <a href="#">tag.name </a>
-                        |
-                        {%endfor%}
-                    </p>
+
+        </div>
+
+    <div class="card" id="creditsAndAttributions">
+        <div class="card-header cardheader" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Credit and Attribution
+                    <br/>
+                    Defaults: you are the only person who gets credit; no attributions.
+                </a>
+            </h5>
+        </div>
+    <div id="collapseTwo" class="collapse cardbody" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="card-block">
+            <div class="Sublabel">
+
+
+                    Here you can give credit to users/groups for this File. For example, you can give credit to other users involved in authoring this File.
+
+                    You can also attribute the Workflows/Files that this File is based on (if any).
+
+            </div>
+            <h5><b>Which users/groups get the credit for this File?</b></h5>
+            <div class="Selection">
+                <p class="subText">Build up the list of credits on the right by adding from the options on the left.</p>
+                <div class="row">
+                    <div class="col-sm-7 groupSelection">
+
+                        <div id="AuthorMe" class="subgroupSeletor">
+                              <span style="font-size: 120%;line-height: 1.5;">Me(<a href="" title="">Author</a>)
+                                <button onclick="addAuthor(1);return false">Add</button>
+                              </span>
+                        </div>
+
+                        <div id="FriendBox" class="subgroupSeletor">
+                            <p>A Friend</p>
+                            <select id="author_friends_dropdown"  style="visibility: visible;">
+                                <option value="0" selected="selected">Select a friend...</option>
+
+                            </select>
+                            <button id="add_friend_author" disabled="disabled">Add</button>
+                        </div>
+
+                        <div id="UserBox" class="subgroupSeletor">
+                            <p>A myExperiment user </p>
+                            <select id="author_users_dropdown"  style="visibility: visible;">
+                                <option value="0" selected="selected">Select a User...</option>
+
+                            </select>
+                            <button id="add_users_author" disabled="disabled" >Add</button>
+                        </div>
+
+                        <div id="GroupBox" class="subgroupSeletor">
+                            <p>A myExperiment Group</p>
+                            <select id="author_group_dropdown"  style="visibility: visible;">
+                                <option value="0" selected="selected">Select a Group...</option>
+
+                            </select>
+                            <button id="add_group_author" disabled="disabled" >Add</button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4 groupSelection">
+                        <p>Current credits:</p>
+                        <div id="authors_list" class="box_editing_inner">
+                            Me&nbsp;&nbsp;&nbsp;<small>[<a href="" t="me" onclick="javascript:deleteAuthor('me', null); return false;">delete</a>]</small><br>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {%endfor%}
+
+            <h5><b>If this File is based on any existing Workflows or Files, please list them below:</b></h5>
+            <div class="Selection">
+                <p class="subText">Build up the list of attributions on the right by adding from the options on the left.</p>
+                <div class="row">
+                    <div class="col-sm-7 groupSelection" id="AttributeSelection">
+
+                        <div id="WorkflowBox" class="subgroupSeletor">
+                            <p>A Workflow on myExperiment</p>
+                            <select id="attribute_workflow_dropdown"  style="visibility: visible;">
+                                <option value="0" selected="selected">Select a Workflow...</option>
+
+                            </select>
+                            <button id="add_workflow_Attribute" disabled="disabled" >Add</button>
+                        </div>
+
+                        <div id="fileBox" class="subgroupSeletor">
+                            <p>A File on myExperiment</p>
+                            <select id="attribute_file_dropdown"  style="visibility: visible;">
+                                <option value="0" selected="selected">Select a File...</option>
+
+                            </select>
+                            <button id="add_file_workflow" disabled="disabled" >Add</button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4 groupSelection">
+                        <p>Current attributions:</p>
+                        <div id="attribute_list" class="box_editing_inner">
+                            Me&nbsp;&nbsp;&nbsp;<small>[<a href="" t="me" onclick="javascript:deleteAuthor('me', null); return false;">delete</a>]</small><br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
+
+    </div>
+
+    <div class="card" id="Sharing">
+        <div class="card-header cardheader" role="tab" id="headingThree">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Sharing
+                <br/>Defaults: anyone can view and download; no one is allowed to update; and not shared with any Groups.
+            </a>
+
+        </div>
+        <div id="collapseThree" class="collapse cardbody" role="tabpanel" aria-labelledby="headingThree">
+            <div class="card-block">
+                <div class="Sublabel" id="SharingNote">
+                    <p>Here you can specify who can view and download this File on myExperiment.</p>
+                    <p>You can also set update permissions for this File. Click hereExpand for more information. </p>
+                    <p>You can also explicitly share this File with your Groups.</p>
+                </div>
+
+                <h5><b>Who can view and download this File on myExperiment?</b></h5>
+                <div class="content Selection" id="FileViewers">
+                    <form>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Anyone can view and download.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Anyone can view, but only my Friends are allowed to download.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Anyone can view, but no one can download.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Only my Friends can view and download.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Only my Friends can view, but no one can download.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - This is a private File - only I can view and download (and any Groups I explicitly share with).</label>
+                        </div>
+                    </form>
+                </div>
+
+                <h5><b>Who can update this File on myExperiment?</b></h5>
+                <div class="content Selection" id="FileUpdaters">
+                    <p class="subText">Note that settings here take precedence over the Sharing permissions above. So those with updating privileges will automatically get to view and download as well</p>
+                    <form>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - All those who can view AND download (from your View/Download permissions above).</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - All my Friends.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - Some of my Friends.</label>
+                        </div>
+                        <div class="radio">
+                          <label><input type="radio" name="optradio"> - No one else (except for me and any Groups explicitly given update permissions).</label>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id = "License">
+    <div class="card-header cardheader" role="tab" id="headingFour">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+         Information License/Rights
+         <br/>Default: Creative Commons Attribution-Share Alike 3.0 Unported License (http://creativecommons.org/licenses/by-sa/3.0/)
+        </a>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse cardbody" role="tabpanel" aria-labelledby="headingFour">
+      <div class="card-block">
+          <div class="Sublabel">
+              <p>This section allows you to specify the rights that people have when they download and use this File, by setting the license.</p>
+          </div>
+          <div class="form-group">
+              <label for="sel1">What license do you want people to adhere to if they download and use this File?</label>
+              <select class="form-control" id="sel1">
+                  <option value="">No license</option>
+                  <option value="1">Creative Commons Attribution-No Derivative Works 3.0 Unported License</option>
+                  <option value="2" selected="selected">Creative Commons Attribution-Share Alike 3.0 Unported License</option>
+                  <option value="3">Creative Commons Attribution 3.0 Unported License</option>
+                  <option value="4">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Unported License</option>
+                  <option value="5">Creative Commons Attribution-Noncommercial 3.0 Unported License</option>
+                  <option value="6">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License</option>
+                  <option value="7">MIT License</option>
+                  <option value="8">BSD License</option>
+                  <option value="9">GNU General Public License (GPL) 2.0</option>
+                  <option value="10">GNU Lesser General Public License (LGPL) 2.1</option>
+                  <option value="11">Apache License v2.0</option>
+                  <option value="12">CC0 1.0 Universal (Public Domain License)</option>
+                  <option value="13">BSD License (3-Clause)</option>
+                  <option value="14">GNU General Public License (GPL) 3.0</option>
+                  <option value="15">Creative Commons Attribution 4.0 International License</option>
+                  <option value="16">Creative Commons Attribution-ShareAlike 4.0 International License</option>
+                  <option value="17">Creative Commons By Attribution-Noncommercial-ShareAlike 4.0 International License</option>
+              </select>
+          </div>
+
+                <p><b>Attributes:&nbsp;</b>
+
+				    Permits Reproduction,
+
+				    Permits Distribution,
+
+				    Requires Notice,
+
+				    Requires Attribution,
+
+				    Permits Derivative Works,
+
+				    Requires Share Alike.
+
+				</p>
+
+
+				<small><h4>You are free:</h4>
+<ul>
+  <li>to Share &mdash; to copy, distribute and transmit the work</li>
+  <li>to Remix &mdash; to adapt the work</li>
+</ul>
+<h4>Under the following conditions:</h4>
+<ul>
+  <li>Attribution &mdash; You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).</li>
+  <li>Share Alike &mdash; If you alter, transform, or build upon this work, you may distribute the resulting work only under the same, similar or a compatible license.</li>
+</ul>
+
+<h4>With the understanding that:</h4>
+<ul>
+  <li>Waiver &mdash; Any of the above conditions can be waived if you get permission from the copyright holder.</li>
+  <li>Other Rights &mdash; In no way are any of the following rights affected by the license:
+    <ul>
+      <li>Your fair dealing or fair use rights;</li>
+      <li>The author's moral rights;</li>
+      <li>Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.</li>
+    </ul>
+  </li>
+  <li>Notice &mdash; For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to <a href='http://creativecommons.org/licenses/by-sa/3.0/'>http://creativecommons.org/licenses/by-sa/3.0/</a>.</li>
+</ul></small>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+
+<br/>
+<p style="text-align: center; margin: 0 3em; padding: 0.6em; border-top: 1px dotted #999999; border-bottom: 1px dotted #999999; color: #333333;">
+  <b>By uploading/creating this content, you agree to the following terms and conditions:</b><br>
+	You are responsible for any content that you upload.
+	You may remove your content at any time. We may make copies for operational purposes.
+	Takedown requests will be reviewed by the myExperiment Management Committee.
+</p>
+
+<p style="text-align: center;">
+    <input id=submit name="commit"  value="Upload and Save" type="submit">
+</p>
+
 {% endblock %}

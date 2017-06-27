@@ -1,10 +1,10 @@
 file{
 	Title:
-	version:
-	createdOn:
-	lastEdited:
+	Version:
+	CreatedOn:
+	LastEdited:
 	FileName:
-	filesize:
+	Filesize:
 	SHA1:??
 	ContentType:
 	Description:

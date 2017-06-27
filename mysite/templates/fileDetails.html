@@ -3,71 +3,82 @@
 {% block navigation %}files{% endblock %}
 
 {% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'files/fileDetails.css' %}" />
+
 <div class="row" id="pasteTree">
 </div>
-<h1>Files</h1>
-<div class="col-md-3 filter">
+
+<h5 style="text-align: center"><b>{{file.Title}}</b></h5>
+<div class="row" style="text-align: center">
+          <p><b>Created:</b> {{file.CreatedOn}} <b>       Last updated:</b> {{file.LastEdited}}</p>
 
 </div>
-<div class="col-md-9 pages">
-    <div class="pagination">
 
-    </div>
-    <div class="searchBox">
-        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="fileHeader">
+            <p>Version {{file.Version}}</p>
         </div>
-    </div>
-    <div class="rowContent">
-        <div class="fileContent">
-            {%for file in files%}
-            <div class="row userItem">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <p>Uploader</p>
-                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                        <p>{{file.Uploader}}</p>
-                    </div>
-                    <div class="col-xs-8 userContent">
-                        <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{file.title}}</p></span>
-                        <p><strong>Created:</strong> {{file.createdOn}} | <strong>Last updated:</strong>{{file.Description}}
-                        </p>
-
-                        <p><strong>Credits:</strong>{{file.Uploader}}</p>
-                        <p><strong>License:</strong>{{file.License}}</p>
-
-                    </div>
-                    <div class="col-xs-2 sidemenu">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true">
-                        <a href="#">View</a>
-                      </span>
-                        <span class="glyphicon glyphicon-send" aria-hidden="true">
-                        <a href="">Mensage</a>
-                      </span>
-                    </div>
+        <div class="fileBody">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><b>Title</b></p>
+                    <p><b>File name</b></p>
+                    <p><b>File size</b></p>
+                    <p><b>Content type</b></p>
                 </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-10">
-                  <textarea class="form-group">
-                    {{file.Description}}
-                  </textarea>
-                    <p><strong>File type:</strong>{{file.Type}}</p>
-                    <p><a href="#">{{file.Comments|length }}</a> | <strong>Viewed:</strong> {{file.Views}} times |
-                        <strong>Downloaded:</strong>{{file.Downloads}}</p>
-                    <a href="#">Tags:</a>
-                    <p>{%for tag in file.Tags %}
-                        <a href="#">tag.name </a>
-                        |
-                        {%endfor%}
-                    </p>
+                <div class="col-sm-9">
+                    <p>{{file.Title}}</p>
+                    <p>{{file.FileName}}</p>
+                    <p>{{file.Filesize}}</p>
+                    <p>{{file.ContentType}}</p>
                 </div>
             </div>
+            <br/>
+            <h5><b>Description</b></h5>
+            <div class="descriptionBody">
+                <p>{{file.Description}}</p>
+            </div>
+            <h5><b>Download</b></h5>
+            <div style="text-align: center">
+                <button>Download File</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+
+        <div class="sidebox Uploader" style="text-align: center">
+            <p><b>Uploader</b></p>
+            <p>{{file.Uploader}}</p>
+        </div>
+
+        <div class="sidebox License" style="text-align: center">
+            <p><b>License</b></p>
+            <p>All versions of this File are licensed under: </p>
+            <p>{{file.License}}</p>
+        </div>
+
+        <div class ="sidebox Tags" style="text-align: center">
+            <p>Tags({{file.Tags|length}})</p>
+            {%for tag in file.Tags%}
+            <p>{{tag.Name}}</p>
             {%endfor%}
+        </div>
+        <div class="sidebox Featured" style="text-align: center">
+            <p><b>Featured in Packs</b> ({{file.FeaturedInPacks|length}}}</p>
+            {%for pack in file.FeaturedInPacks%}
+            <p>{{pack.Name}}</p>
+            {%endfor%}
+        </div>
+        <div class="sidebox Statistics" style="text-align: center">
+            <p><b>Statistics</b></p>
+            <p>{{file.Views}} Viewings</p>
+            <p>{{file.Downloads}} Downloads</p>
         </div>
     </div>
 </div>
+
+
 {% endblock %}

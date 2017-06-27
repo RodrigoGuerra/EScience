@@ -23,6 +23,10 @@ def update_file(id, file):
     stringify_id(new_file)
     return new_file
 
+def get_file(id):
+    new_file = db.files.find_one({'_id': ObjectId(id)})
+    stringify_id(new_file)
+    return new_file
 
 def delete_user(id):
     return db.files.find_one_and_delete({'_id': ObjectId(id)})

@@ -1,0 +1,13 @@
+#imagediv{
+   text-align: center;
+}
+#policy{
+    border:1px solid black;
+    padding: 5px 15px 15px 15px;
+    border-radius: 15px;
+    margin: 15px 15px 0px 0px;
+}
+#textDescription{
+    width: 100%;
+    border-radius: 15px;
+}

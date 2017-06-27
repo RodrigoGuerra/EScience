@@ -51,11 +51,14 @@ def create_group(user):
 
 
 def update_group(id, group):
-    new_group = db.groups.find_one_and_update({'_id': ObjectId(id)}, {'$set': group},
-                                              return_document=ReturnDocument.AFTER)
+    new_group = db.groups.find_one_and_update({'_id': ObjectId(id)}, {'$set': group},return_document=ReturnDocument.AFTER)
     stringify_id(new_group)
     return new_group
 
+def get_group(id):
+    new_group = db.groups.find_one({'_id': ObjectId(id)})
+    stringify_id(new_group)
+    return new_group
 
 def delete_group(id):
     return db.groups.find_one_and_delete({'_id': ObjectId(id)})

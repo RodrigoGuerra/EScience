@@ -14,7 +14,7 @@
 
     </div>
     <div class="searchBox">
-        <p>Showing XXX results. Use the filters on the left and the search box below to refine the results</p>
+        <p>Showing {{packs|length}} results. Use the filters on the left and the search box below to refine the results</p>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
@@ -22,22 +22,22 @@
           </span>
         </div>
     </div>
-    <div class="rowContent">
+    <div class="row">
         <div class="fileContent">
             {%for p in packs%}
-            <div class="row userItem">
+            <div class="row rowContent">
                 <div class="row">
-                    <div class="col-xs-2">
+                    <div class="col-xs-2 contentBox">
                         <p>Creator</p>
                         <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                         <p>{{p.Uploader}}</p>
                     </div>
-                    <div class="col-xs-8 userContent">
+                    <div class="col-xs-7">
                         <span class="glyphicon glyphicon-education" aria-hidden="true"><p>{{p.Title}}</p></span>
                         <p><strong>Created:</strong> {{p.CreatedOn}} | <strong>Last updated:</strong>{{p.LastEdited}}
                         </p>
                     </div>
-                    <div class="col-xs-2 sidemenu">
+                    <div class="col-xs-2 contentBox ">
                       <span class="glyphicon glyphicon-search" aria-hidden="true">
                         <a href="#">View</a>
                       </span>
@@ -48,9 +48,11 @@
                 </div>
                 <div class="col-xs-2"></div>
                 <div class="col-xs-10">
-                  <textarea class="form-group">
-                    {{p.Description}}
-                  </textarea>
+                    <div class="contentBox">
+                          <p>{{p.Description}}
+                          </p>
+                     </div>
+
                     <p><strong>{{p.Items|length}} items in this pack</strong></p>
                     <p><a href="#">Comments: {{p.Comments|length }}</a> | <strong>Viewed:</strong> {{p.Views}} times
                         | <strong>Downloaded:</strong>{{p.Downloads}}</p>

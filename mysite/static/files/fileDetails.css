@@ -1,0 +1,23 @@
+.fileHeader{
+    background-color: #fdffbf;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    border-radius: 15px 15px 0px 0px;
+}
+.fileBody{
+    background-color: #e0e0e0;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+}
+.descriptionBody{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    margin: 5px;
+}
+.sidebox{
+    background-color: #fdffbf;
+    border: 1px solid #CCCCCC;
+    padding: :5px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,11 @@
+.ScriptInput{
+    background-color: #EEEEEE;
+    border: 1px dotted #999999;
+    padding: 0.8em 1.4em;
+    width: 50%;
+    align-self: center;
+    margin: auto;
+}
+.headerScript{
+    text-align: center;
+}

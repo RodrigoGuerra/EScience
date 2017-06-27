@@ -1,17 +1,19 @@
 from django.http import HttpResponse
 from django.template.loader import get_template
 
+
+
 from service.files import *
 
 
 def files(request):
     file = {
         'Title': 'Arquivo',
-        'version': '1.0',
-        'createdOn': '22/05/2017',
-        'lastEdited': '22/05/2017',
+        'Version': '1.0',
+        'CreatedOn': '22/05/2017',
+        'LastEdited': '22/05/2017',
         'FileName': 'Aqruivo Teste',
-        'filesize': '3054',
+        'Filesize': '3054',
         'ContentType': 'Arquivo de Scripts',
         'Description': 'Arquivo teste de scripts',
         'Uploader': 'Thiago',
@@ -21,7 +23,7 @@ def files(request):
         'Tags': [{'Name': 'TAG1'}, {'Name': 'TAG2'}],
         'Type': 'file',
         'SharedGroups': [{'Groupname': 'UFF'}],
-        'FeaturedInPacks': '',
+        'FeaturedInPacks': [{'Name': 'Pack1'}, {'Name': 'Pack2'}],
         'AttibutedBy': 325,
         'FavouritedBy': 245,
         'Downloads': 450,
@@ -33,3 +35,18 @@ def files(request):
     t = get_template("files.html")
     html = t.render(dict({'files': fil}))
     return HttpResponse(html)
+
+def newFile(request):
+    t = get_template("newFile.html")
+    html = t.render(dict({}))
+    return HttpResponse(html);
+
+def fileDetails(request, file_id):
+    f = get_file(file_id)
+    
+    t = get_template("fileDetails.html")
+    html = t.render(dict({'file': f}))
+    return HttpResponse(html);
+
+def insertFile(request):
+    return

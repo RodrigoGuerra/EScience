@@ -25,24 +25,26 @@
         <div id="MostFriends" class="tab-pane fade in active">
             <div id="listMostFriends">
                 {%for user in friend%}
-                <div class="row userItem">
-                    <div class="col-xs-2">
+                <div class="row rowContent">
+                    <div class="col-sm-1 contentBox">
                         <p>Member</p>
+
                         <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                         <p>{{user.name}}</p>
                     </div>
-                    <div class="col-xs-8 userContent">
+                    <div class="col-sm-8  contentBox">
                             <span class="glyphicon glyphicon-education"
-                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
+                                  aria-hidden="true"><p>name: {{user.Name}}</p></span>
                         <p>Joined: {{user.JoinDate}}</p>
                         <p>Description: {{user.Description}}</p>
                         <p>Last active: {{user.LastSeen}}</p>
-                        <p>WebSite: {{user.website}}</p>
+                        <p>WebSite: {{user.Website}}</p>
                         <p>Field/Industry: {{user.Fieldindustry}}</p>
                     </div>
-                    <div class="col-xs-2 sidemenu">
+                    <div class="col-sm-2 contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
+
+                    <a href="../users/">View</a>
                   </span>
                         <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
@@ -55,13 +57,13 @@
         <div id="MostCredited" class="tab-pane fade">
             <div id="listMostCredited">
                 {%for user in credited%}
-                <div class="row userItem">
-                    <div class="col-xs-2">
+                <div class="row rowContent">
+                    <div class="col-xs-1 contentBox">
                         <p>Member</p>
                         <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
                         <p>{{user.name}}</p>
                     </div>
-                    <div class="col-xs-8 userContent">
+                    <div class="col-xs-8 userContent contentBox">
                             <span class="glyphicon glyphicon-education"
                                   aria-hidden="true"><p>name: {{user.name}}</p></span>
                         <p>Joined: {{user.JoinDate}}</p>
@@ -70,7 +72,7 @@
                         <p>WebSite: {{user.website}}</p>
                         <p>Field/Industry: {{user.Fieldindustry}}</p>
                     </div>
-                    <div class="col-xs-2 sidemenu">
+                    <div class="col-xs-2 sidemenu contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
                     <a href="#">View</a>
                   </span>
@@ -85,13 +87,13 @@
         <div id="HighRated" class="tab-pane fade">
             <div id="listHighRated">
                 {%for user in rated %}
-                <div class="row userItem">
-                    <div class="col-xs-2">
+                <div class="row rowContent">
+                    <div class="col-xs-1 contentBox">
                         <p>Member</p>
                         <image src="../images/avatar.png" style="width:50px;height:50px"></image>
                         <p>{{user.name}}</p>
                     </div>
-                    <div class="col-xs-8 userContent">
+                    <div class="col-xs-8 contentBox">
                             <span class="glyphicon glyphicon-education"
                                   aria-hidden="true"><p>name: {{user.name}}</p></span>
                         <p>Joined: {{user.JoinDate}}</p>
@@ -100,7 +102,7 @@
                         <p>WebSite: {{user.website}}</p>
                         <p>Field/Industry: {{user.Fieldindustry}}</p>
                     </div>
-                    <div class="col-xs-2 sidemenu">
+                    <div class="col-xs-2 contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
                     <a href="#">View</a>
                   </span>

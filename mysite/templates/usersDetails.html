@@ -5,115 +5,53 @@
 {% block content %}
 <div class="row" id="pasteTree">
 </div>
-<div id="usersContainer">
-    <ul>
-        <li>Invite</li>
-        <li>View All Users</li>
-        <li>View TimeLine</li>
-    </ul>
+
+<div class="row" style="text-align:center;" >
+
+
+        <button>Request Friendship</button>
+        <button>Send message</button>
+
 </div>
+<h4 style="margin-top:25px; text-align:center;"><b>User Profile: {{user.Name}}</b></h4>
 
-<div class="bs-example">
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#MostFriends">Most Friends</a></li>
-        <li><a data-toggle="tab" href="#MostCredited">Most Credited</a></li>
-        <li class="dropdown">
-            <a data-toggle="tab" href="#HighRated">Highest Rated</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div id="MostFriends" class="tab-pane fade in active">
-            <div id="listMostFriends">
-                {%for user in friend%}
-                <div class="row userItem">
-                    <div class="col-xs-2">
-                        <p>Member</p>
-                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                        <p>{{user.name}}</p>
-                    </div>
-                    <div class="col-xs-8 userContent">
-                            <span class="glyphicon glyphicon-education"
-                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
-                        <p>Joined: {{user.JoinDate}}</p>
-                        <p>Description: {{user.Description}}</p>
-                        <p>Last active: {{user.LastSeen}}</p>
-                        <p>WebSite: {{user.website}}</p>
-                        <p>Field/Industry: {{user.Fieldindustry}}</p>
-                    </div>
-                    <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                        <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
-                    </div>
-                </div>
-                {%endfor%}
-            </div>
-        </div>
-        <div id="MostCredited" class="tab-pane fade">
-            <div id="listMostCredited">
-                {%for user in credited%}
-                <div class="row userItem">
-                    <div class="col-xs-2">
-                        <p>Member</p>
-                        <image src="../../images/avatar.png" style="width:50px;height:50px"></image>
-                        <p>{{user.name}}</p>
-                    </div>
-                    <div class="col-xs-8 userContent">
-                            <span class="glyphicon glyphicon-education"
-                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
-                        <p>Joined: {{user.JoinDate}}</p>
-                        <p>Description: {{user.Description}}</p>
-                        <p>Last active: {{user.LastSeen}}</p>
-                        <p>WebSite: {{user.website}}</p>
-                        <p>Field/Industry: {{user.Fieldindustry}}</p>
-                    </div>
-                    <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                        <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
-                    </div>
-                </div>
-                {%endfor%}
-            </div>
-        </div>
-        <div id="HighRated" class="tab-pane fade">
-            <div id="listHighRated">
-                {%for user in rated %}
-                <div class="row userItem">
-                    <div class="col-xs-2">
-                        <p>Member</p>
-                        <image src="../images/avatar.png" style="width:50px;height:50px"></image>
-                        <p>{{user.name}}</p>
-                    </div>
-                    <div class="col-xs-8 userContent">
-                            <span class="glyphicon glyphicon-education"
-                                  aria-hidden="true"><p>name: {{user.name}}</p></span>
-                        <p>Joined: {{user.JoinDate}}</p>
-                        <p>Description: {{user.Description}}</p>
-                        <p>Last active: {{user.LastSeen}}</p>
-                        <p>WebSite: {{user.website}}</p>
-                        <p>Field/Industry: {{user.Fieldindustry}}</p>
-                    </div>
-                    <div class="col-xs-2 sidemenu">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
-                  </span>
-                        <span class="glyphicon glyphicon-send" aria-hidden="true">
-                    <a href="">Mensage</a>
-                  </span>
-                    </div>
-                </div>
-                {%endfor%}
-            </div>
-        </div>
-
+<div class="row">
+    <div class="col-sm-2 userDetails">
+        <img src="" alt="" style="width:150px;height:150px;">
     </div>
-
+    <div class="col-sm-7 userDetails ">
+        <p><b>Name:</b> {{user.name}}</p>
+        <p><b>Joined:</b> {{user.JoinDate}}</p>
+        <p><b>Last seen:</b> {{user.LastSeen}}</p>
+        <p><b>Email(public): </b> <a> {{user.Email}} </a></p>
+        <p><b>Website:</b> {{user.Website}}</p>
+        <p><b>Location:</b> {{user.Location}}</p>
+    </div>
+    <div class="col-sm-2">
+        <div class="userInfo Sublabel sublabelDetails">
+            <p>{{user.NumberFriended}} Friends</p>
+            <p>{{user.NumberGroups}} Groups</p>
+            <p>{{user.NumberFiles}} Files</p>
+            <p>{{user.NumberPacks}} Packs</p>
+            <p>{{user.NumberScripts}} Scripts</p>
+        </div>
+        <div class="Sublabel sublabelDetails">
+            <p>{{user.Name}} has been credited {{user.Credited}} times</p>
+        </div>
+        <div class="Sublabel sublabelDetails">
+            <p>{{user.Name}} has an average rating of: {{user.Rating}}</p>
+        </div>
+    </div>
 </div>
+<div class="Sublabel sublabelDetails">
+    <p>{{user.Description}}</p>
+</div>
+
+<div class="groupSelection">
+    <p><b>Field/Industry:</b> {{user.Fieldindustry}}</p>
+    <p><b>Occupation/Role(s):</b> {{user.Occupationroles}}</p>
+    <p><b>Organisation(s):</b> {{user.Organisations}}</p>
+    <p><b>Interests:</b> {{user.Interests}}</p>
+</div>
+
 {% endblock %}

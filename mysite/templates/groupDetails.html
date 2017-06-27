@@ -8,50 +8,37 @@
 
 <div class="row" style="text-align:center;" >
 
-
-        <button>Request Friendship</button>
-        <button>Send message</button>
+        <button>Request Membership</button>
+        <button>View Group Content</button>
 
 </div>
-<h4 style="margin-top:25px; text-align:center;"><b>User Profile: {{user.Name}}</b></h4>
+<h4 style="margin-top:25px; text-align:center;"><b>Group: {{group.UniqueName}}</b></h4>
 
+<div style="text-align:center;">
+    <p>|Members({{group.Members|length}})|News|Shared Items|Credited by({{group.CreditedBy|length}})|Tags({{group.Tags|length}})|</p>
+</div>
 <div class="row">
-    <div class="col-sm-2 userDetails">
-        <img src="" alt="" style="width:150px;height:150px;">
-    </div>
-    <div class="col-sm-7 userDetails ">
-        <p><b>Name:</b> {{user.name}}</p>
-        <p><b>Joined:</b> {{user.JoinDate}}</p>
-        <p><b>Last seen:</b> {{user.LastSeen}}</p>
-        <p><b>Email(public): </b> <a> {{user.Email}} </a></p>
-        <p><b>Website:</b> {{user.Website}}</p>
-        <p><b>Location:</b> {{user.Location}}</p>
-    </div>
-    <div class="col-sm-2">
-        <div class="userInfo Sublabel sublabelDetails">
-            <p>{{user.NumberFriended}} Friends</p>
-            <p>{{user.NumberGroups}} Groups</p>
-            <p>{{user.NumberFiles}} Files</p>
-            <p>{{user.NumberPacks}} Packs</p>
-            <p>{{user.NumberScripts}} Scripts</p>
+    <div class="col-sm-9 userDetails" id="groupDetails">
+        <div class="groupSelection">
+            <p>{{group.Description}}</p>
         </div>
-        <div class="Sublabel sublabelDetails">
-            <p>{{user.Name}} has been credited {{user.Credited}} times</p>
-        </div>
-        <div class="Sublabel sublabelDetails">
-            <p>{{user.Name}} has an average rating of: {{user.Rating}}</p>
-        </div>
+        <p>Members: {{group.Members|length}} </p>
+        <p><b>Created at:</b>{{group.CreatedAt}}</p>
+        <p><b>News:</b> {{group.News}}</p>
     </div>
-</div>
-<div class="Sublabel sublabelDetails">
-    <p>{{user.Description}}</p>
+    <div class="col-sm-3">
+        <div class="userInfo Sublabel sublabelDetails" style="text-align:center">
+            <p>Owner</p>
+            <image src="#"></image>
+            <p>{{group.Owner}}</p>
+        </div>
+        <div class="Sublabel sublabelDetails" style="text-align:center">
+            <p>{{group.Members|length}} Members</p>
+            <p>{{group.SharedItems}} Shared items</p>
+        </div>
+
+    </div>
 </div>
 
-<div class="groupSelection">
-    <p><b>Field/Industry:</b> {{user.Fieldindustry}}</p>
-    <p><b>Occupation/Role(s):</b> {{user.Occupationroles}}</p>
-    <p><b>Organisation(s):</b> {{user.Organisations}}</p>
-    <p><b>Interests:</b> {{user.Interests}}</p>
-</div>
 
 {% endblock %}

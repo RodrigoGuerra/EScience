@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
     <!-- links do bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -15,6 +19,9 @@
     <meta name="google-signin-client_id"
           content="509268929644-6sgar4mtbl40qcqp8d30ibodaui636b7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Common/style.css' %}" />
+    <script type = 'text/javascript' src="{% static  'Common/script.js' %}"></script>
 
     <script type="text/javascript">
 $(document).ready(function(){
@@ -79,28 +86,27 @@ $(document).ready(function(){
         </div>
     </div>
 </nav>
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-
-
-<div id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 text-left">
-                FUNDED BY: ...
-                <br/><br/>
-                AFFILIATES: ...
-            </div>
-            <div class="col-md-4 text-center">
-                ABOUT: ...
-            </div>
-            <div class="col-md-4 text-right">
-                blabla: ...
-            </div>
-        </div>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        {% block content %}{% endblock %}
     </div>
 
 </div>
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                FUNDED BY: RLT
+                <br/><br/>
+                AFFILIATES: Universidade Federal Fluminense
+            </div>
+            <div class="col-md-4 text-center">
+                ABOUT:
+            </div>
+
+        </div>
+    </div>
+
+</footer >
 </body>
 </html>

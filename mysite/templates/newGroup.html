@@ -1,317 +1,85 @@
 {% extends "template.html" %}
 
-{% block navigation %}files{% endblock %}
+{% block navigation %}groups{% endblock %}
 
 {% block content %}
 
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'files/style.css' %}" />
-<script type = 'text/javascript' src="{% static  'files/File.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'groups/style.css' %}" />
+
 
 
 <div class="row" id="pasteTree">
 </div>
-<h4>Upload File</h4>
+<h4 align="center">New Group</h4>
 <form action=""></form>
-<div class="row">
-    <div class="col-sm-3">
-        <h4>File to upload</h4>
-    </div>
-    <div class="col-sm-3">
-        <input id="fileinput" type="file">
-    </div>
-</div>
 
-<h6>Title:</h6>
+    <div >
+        <h4>Owner</h4>
+    </div>
+    <div id="imagediv">
+         <img src="" alt="User Image" height="42" width="42">
+         <p>TODO: USERNAME</p>
+    </div>
+
+
+<h5><b>Title:</b></h5>
 <input type="text">
 
-<h6>description:</h6>
-<textarea name="" id="" cols="30" rows="10"></textarea>
-
-<div id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="card" id="tags">
-
-            <div class="card-header" role="tab" id="headingOne">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                     Tags
-                 </a>
-            </div>
-
-
-            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="card-block">
-                    <p>Here you can add tags to describe this File.</p>
-
-                    <h6>Tags:</h6>
-                    <div CLASS="content" id="tagContent">
-                        <p>Build up the list of tags below by adding from the two different boxes further below</p>
-                        <div id="tagList"><p>None</p></div>
-                    </div>
-                    <div id="tagSelector" class="content">
-                        <p>Add one or more tags manually (separated by commas; click on 'Add' to add to the list):</p>
-                        <input type="text">
-                        <button>Add</button>
-                    </div>
-                </div>
-            </div>
-
-    </div>
-
-    <div class="card" id="creditsAndAttributions">
-        <div class="card-header" role="tab" id="headingTwo">
-            <h5 class="mb-0">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Credit and Attribution
-                    <br/>
-                    Defaults: you are the only person who gets credit; no attributions.
-                </a>
-            </h5>
-        </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="card-block">
-            <div class="infoText">
-                <mark>
-
-                    Here you can give credit to users/groups for this File. For example, you can give credit to other users involved in authoring this File.
-
-                    You can also attribute the Workflows/Files that this File is based on (if any).
-                </mark>
-            </div>
-            <p>Which users/groups get the credit for this File?</p>
-            <div id="creditSelection">
-                <p>Build up the list of credits on the right by adding from the options on the left.</p>
-                <div class="row">
-                    <div class="col-sm-8" id="authorSelection">
-
-                        <div id="AuthorMe">
-                              <span style="font-size: 120%;line-height: 1.5;">Me(<a href="" title="">Author</a>)
-                                <button onclick="addAuthor(1);return false">Add</button>
-                              </span>
-                        </div>
-
-                        <div id="FriendBox">
-                            <p>A Friend</p>
-                            <select id="author_friends_dropdown"  style="visibility: visible;">
-                                <option value="0" selected="selected">Select a friend...</option>
-
-                            </select>
-                            <button id="add_friend_author" disabled="disabled">Add</button>
-                        </div>
-
-                        <div id="UserBox">
-                            <p>A myExperiment user </p>
-                            <select id="author_users_dropdown"  style="visibility: visible;">
-                                <option value="0" selected="selected">Select a User...</option>
-
-                            </select>
-                            <button id="add_users_author" disabled="disabled" >Add</button>
-                        </div>
-
-                        <div id="GroupBox">
-                            <p>A myExperiment Group</p>
-                            <select id="author_group_dropdown"  style="visibility: visible;">
-                                <option value="0" selected="selected">Select a Group...</option>
-
-                            </select>
-                            <button id="add_group_author" disabled="disabled" >Add</button>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-4">
-                        <p>Current credits:</p>
-                        <div id="authors_list" class="box_editing_inner">
-                            Me&nbsp;&nbsp;&nbsp;<small>[<a href="" t="me" onclick="javascript:deleteAuthor('me', null); return false;">delete</a>]</small><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <p>If this File is based on any existing Workflows or Files, please list them below:</p>
-            <div id="attribution_section">
-                <p>Build up the list of attributions on the right by adding from the options on the left.</p>
-                <div class="row">
-                    <div class="col-sm-8" id="AttributeSelection">
-
-                        <div id="WorkflowBox">
-                            <p>A Workflow on myExperiment</p>
-                            <select id="attribute_workflow_dropdown"  style="visibility: visible;">
-                                <option value="0" selected="selected">Select a Workflow...</option>
-
-                            </select>
-                            <button id="add_workflow_Attribute" disabled="disabled" >Add</button>
-                        </div>
-
-                        <div id="fileBox">
-                            <p>A File on myExperiment</p>
-                            <select id="attribute_file_dropdown"  style="visibility: visible;">
-                                <option value="0" selected="selected">Select a File...</option>
-
-                            </select>
-                            <button id="add_file_workflow" disabled="disabled" >Add</button>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-4">
-                        <p>Current attributions:</p>
-                        <div id="attribute_list" class="box_editing_inner">
-                            Me&nbsp;&nbsp;&nbsp;<small>[<a href="" t="me" onclick="javascript:deleteAuthor('me', null); return false;">delete</a>]</small><br>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    </div>
-
-    <div class="card" id="Sharing">
-        <div class="card-header" role="tab" id="headingThree">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Sharing
-                <br/>Defaults: anyone can view and download; no one is allowed to update; and not shared with any Groups.
-            </a>
-
-        </div>
-        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="card-block">
-                <div class="content" id="SharingNote">
-                    <p>Here you can specify who can view and download this File on myExperiment.</p>
-                    <p>You can also set update permissions for this File. Click hereExpand for more information. </p>
-                    <p>You can also explicitly share this File with your Groups.</p>
-                </div>
-
-                <h6>Who can view and download this File on myExperiment?</h6>
-                <div class="content"id="FileViewers">
-                    <form>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Anyone can view and download.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Anyone can view, but only my Friends are allowed to download.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Anyone can view, but no one can download.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Only my Friends can view and download.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Only my Friends can view, but no one can download.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - This is a private File - only I can view and download (and any Groups I explicitly share with).</label>
-                        </div>
-                    </form>
-                </div>
-
-                <h6>Who can update this File on myExperiment?</h6>
-                <div class="content"id="FileUpdaters">
-                    <p>Note that settings here take precedence over the Sharing permissions above. So those with updating privileges will automatically get to view and download as well</p>
-                    <form>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - All those who can view AND download (from your View/Download permissions above).</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - All my Friends.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - Some of my Friends.</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio"> - No one else (except for me and any Groups explicitly given update permissions).</label>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" id = "License">
-    <div class="card-header" role="tab" id="headingFour">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-         Information License/Rights
-         <br/>Default: Creative Commons Attribution-Share Alike 3.0 Unported License (http://creativecommons.org/licenses/by-sa/3.0/)
-        </a>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-      <div class="card-block">
-          <div class="infoText">
-              <mark>This section allows you to specify the rights that people have when they download and use this File, by setting the license.</mark>
-          </div>
-          <div class="form-group">
-              <label for="sel1">Select list:</label>
-              <select class="form-control" id="sel1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-          </div>
-
-                <p><b>Attributes:&nbsp;</b>
-
-				    Permits Reproduction,
-
-				    Permits Distribution,
-
-				    Requires Notice,
-
-				    Requires Attribution,
-
-				    Permits Derivative Works,
-
-				    Requires Share Alike.
-
-				</p>
-
-		        <br/>
-				<small><h4>You are free:</h4>
-<ul>
-  <li>to Share &mdash; to copy, distribute and transmit the work</li>
-  <li>to Remix &mdash; to adapt the work</li>
-</ul>
-<h4>Under the following conditions:</h4>
-<ul>
-  <li>Attribution &mdash; You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).</li>
-  <li>Share Alike &mdash; If you alter, transform, or build upon this work, you may distribute the resulting work only under the same, similar or a compatible license.</li>
-</ul>
-
-<h4>With the understanding that:</h4>
-<ul>
-  <li>Waiver &mdash; Any of the above conditions can be waived if you get permission from the copyright holder.</li>
-  <li>Other Rights &mdash; In no way are any of the following rights affected by the license:
-    <ul>
-      <li>Your fair dealing or fair use rights;</li>
-      <li>The author's moral rights;</li>
-      <li>Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.</li>
-    </ul>
-  </li>
-  <li>Notice &mdash; For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to <a href='http://creativecommons.org/licenses/by-sa/3.0/'>http://creativecommons.org/licenses/by-sa/3.0/</a>.</li>
-</ul></small>
-      </div>
-
-    </div>
-  </div>
-
+<div id="policy" class="content">
+    <h4>New Membership Policy</h4>
+    <p>You can specify a policy on how new members can join this group. </p>
+    <select id="network_new_member_policy" name="network[new_member_policy]" style="visibility: visible;">
+        <option value="open" selected="selected">Open to anyone</option>
+        <option value="by_request">Membership by request</option>
+        <option value="invitation_only">Invitation only</option>
+    </select>
 </div>
 
-<p style="text-align: center; margin: 0 3em; padding: 0.6em; border-top: 1px dotted #999999; border-bottom: 1px dotted #999999; color: #333333;">
-  <b>By uploading/creating this content, you agree to the following terms and conditions:</b><br>
-	You are responsible for any content that you upload.
-	You may remove your content at any time. We may make copies for operational purposes.
-	This service is governed by the <a href="http://www.ja.net/services/publications/policy/aup.html" target="_blank">JANET Acceptable Use Policy</a>.
-	Takedown requests will be reviewed by the myExperiment Management Committee.
-	The sharing functionality is under beta test. Please contact us for further information about Terms and Conditions.
-</p>
+
+
+<div class="form-group">
+  <h5><b>Description:</b></h5>
+  <textarea class="form-control" rows="5" id="textDescription"></textarea>
+</div>
+
+<div id="accordion" role="tablist" aria-multiselectable="true">
+     <div class="card" id="tags">
+
+                <div class="card-header cardheader" role="tab" id="headingOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Tags
+                     </a>
+                </div>
+
+
+                <div id="collapseOne" class="collapse cardbody" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-block">
+                        <div class="TagSublabel">
+                            <p>Here you can add tags to describe this File.</p>
+                        </div>
+                        <h5><b>Tags:</b></h5>
+                        <div class="tagbody">
+                            <div CLASS="content" id="tagContent">
+                                <p>Build up the list of tags below by adding from the two different boxes further below</p>
+                                <div id="tagList"><p>None</p></div>
+                            </div>
+                            <div id="tagSelector" class="content">
+                                <p>Add one or more tags manually (separated by commas; click on 'Add' to add to the list):</p>
+                                <input type="text">
+                                <button>Add</button>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+
+        </div>
+</div>
+
+
 
 <p style="text-align: center;">
-    <input id=submit name="commit"  value="Upload and Save" type="submit">
+    <input id="submit" name="commit"  value="Create" type="submit">
   </p>
 
 {% endblock %}

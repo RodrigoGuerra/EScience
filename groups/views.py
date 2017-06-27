@@ -11,7 +11,7 @@ def groups(request):
         'Members  ': [{'Name': 'rodrigo'}, {'Name': 'leonardo'}],
         'Description': 'escience',
         'SharedItems': '5',
-        'announcements': 'trabalho',
+        'Announcements': 'trabalho',
         'Tags': [{'Name': 'escience'}, {'Name': 'scripts'}],
         'CreatedAt': '23/03/2017',
         'UniqueName': 'Grupo de trabalho',
@@ -24,4 +24,16 @@ def groups(request):
     t = get_template("groups.html")
     html = t.render(
         dict({'groupsMR': mostRecent, 'groupsMM': mostMembers, 'groupsMS': mostShared, 'groupsMC': mostCredited}))
+    return HttpResponse(html)
+
+def newGroup(request):
+    t = get_template("newGroup.html")
+    html = t.render(
+        dict({}))
+    return HttpResponse(html)
+
+def groupDetails(request, group_id):
+    group = get_group(group_id)
+    t = get_template("groupDetails.html")
+    html = t.render(dict({'group': group}))
     return HttpResponse(html)
