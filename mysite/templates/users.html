@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-sm-2 contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
-
-                    <a href="../users/">View</a>
+                    {% load appname_tags%}
+                    <a href="../users/{{user|mongo_id}}">View</a>
                   </span>
                         <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
@@ -74,7 +74,8 @@
                     </div>
                     <div class="col-xs-2 sidemenu contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
+                     {% load appname_tags%}
+                    <a href="../users/{{user|mongo_id}}">View</a>
                   </span>
                         <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
@@ -104,7 +105,8 @@
                     </div>
                     <div class="col-xs-2 contentBox">
                   <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    <a href="#">View</a>
+                     {% load appname_tags%}
+                    <a href="../users/{{user|mongo_id}}">View</a>
                   </span>
                         <span class="glyphicon glyphicon-send" aria-hidden="true">
                     <a href="">Mensage</a>
