@@ -1,65 +1,53 @@
-$(function() {
-    $("#submit").click(submitForm)  
+$(function () {
+    $("#submit").click(submitForm)
 });
 
 
-function submitForm(){
+function submitForm() {
     alert("Upload with sucess")
-    var formData = new FormData(this);
-    
-    files = $("#fileinput")[0].files;
-    
-    $.each(files, function(key, value)
-    {
-        formData.append('fileinput', value);
+    var formData = {};
+    /*
+     files = $("#fileinput")[0].files;
+
+     $.each(files, function (key, value) {
+     formData.append('fileinput', value);
+     });
+     */
+    formData['Title'] = $("#titleinput").text();
+
+    formData['Description'] = $("#textDescription").text();
+
+    var tags = []
+    $("#tagList").find('p').each(function (index, element) {
+        tags.push({Name: element.text()});
     });
-    
-    
-    formData.append('Title',$("#titleinput").text());
-    
-    formData.append('Description',$("#textDescription").text());
-    
-    $("#tagList").find('p').each(function (index, element){
-        formData.append('tag'+index,element.text());                              
+    formData['Tags'] = tags;
+
+    var authors = [];
+    $("#authors_list").find('p').each(function (index, element) {
+        authors.push({Name: element.text()});
     });
-    
-    $("#authors_list").find('p').each(function (index, element){
-        formData.append('author'+index,element.text());                              
+    formData['Authors'] = authors;
+
+
+    $("#attribute_list").find('p').each(function (index, element) {
+        formData.append('attribute' + index, element.text());
     });
-    
-    $("#attribute_list").find('p').each(function (index, element){
-        formData.append('attribute'+index,element.text());                            
-    });
-    
-    formData.append('view&download',$("#FileViewers input:radio:checked").val());
-    
-    formData.append('Update',$("#FileUpdaters input:radio:checked").val());
-    
-    formData.append('license',$("#sel1"));
-    
+
+    formData['View&Download'] = $("#FileViewers input:radio:checked").val();
+
+    formData['Update'] = $("#FileUpdaters input:radio:checked").val();
+    formData['License'] = $("#sel1");
+
     $.ajax({
-       url: window.location.pathname+'/InsertFile',
-       type: 'POST',
-        data: formData,
+        url: window.location.pathname + '/InsertFile',
+        type: 'post',
+        dataType: 'json',
         success: function (data) {
-            alert(data)
+            console.log(JSON.stringify(data, null, 2));
         },
-        
-        xcsrftoken: getCookie('xcsrftoken'),
-        cache: false,
-        contentType: false,
-        processData: false,
-        xhr: function() {  // Custom XMLHttpRequest
-            var myXhr = $.ajaxSettings.xhr();
-            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                myXhr.upload.addEventListener('progress', function () {
-                    /* faz alguma coisa durante o progresso do upload */
-                }, false);
-            }
-        return myXhr;
-        }
+        data: JSON.stringify(formData)
     });
-        
 }
 
 function getCookie(name) {
