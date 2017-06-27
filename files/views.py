@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+import json
+
+from django.http import HttpResponse, JsonResponse
 from django.template.loader import get_template
-
-
 
 from service.files import *
 
@@ -36,17 +36,29 @@ def files(request):
     html = t.render(dict({'files': fil}))
     return HttpResponse(html)
 
+
 def newFile(request):
     t = get_template("newFile.html")
     html = t.render(dict({}))
-    return HttpResponse(html);
+    return HttpResponse(html)
+
 
 def fileDetails(request, file_id):
     f = get_file(file_id)
-    
+
     t = get_template("fileDetails.html")
     html = t.render(dict({'file': f}))
-    return HttpResponse(html);
+    return HttpResponse(html)
+
 
 def insertFile(request):
-    return
+    if (request.method == "POST"):
+        file = json.loads(request.body.decode("utf-8"))
+        res = create_file(file)
+        return JsonResponse(res, status=201)
+    else:
+        response_data = {
+            "result": "error",
+            "message": "Invalid method",
+        }
+        return JsonResponse(response_data, status=405)

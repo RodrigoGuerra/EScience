@@ -15,7 +15,7 @@ def get_files():
 def create_file(files):
     db.files.insert_one(files)
     stringify_id(files)
-    return ObjectId
+    return files
 
 
 def update_file(id, file):
@@ -23,10 +23,12 @@ def update_file(id, file):
     stringify_id(new_file)
     return new_file
 
+
 def get_file(id):
     new_file = db.files.find_one({'_id': ObjectId(id)})
     stringify_id(new_file)
     return new_file
+
 
 def delete_user(id):
     return db.files.find_one_and_delete({'_id': ObjectId(id)})

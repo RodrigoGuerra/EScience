@@ -6,8 +6,8 @@ urlpatterns = [
     url(r'^$', views.files, name='files'),
     url(r'^new$', views.newFile, name='newfile'),
     url(r'^new/$', views.newFile, name='newfile'),
-    url(r'^new/InsertFile$', views.newFile, name='newfile'),
-    url(r'^new/InsertFile/$', views.newFile, name='newfile'),
+    url(r'^new/InsertFile$', views.insertFile, name='newfile'),
+    url(r'^new/InsertFile/$', views.insertFile, name='newfile'),
     url(r'^(?P<file_id>[0-9|\w]+)/$', views.fileDetails, name='users'),
 
 ]
