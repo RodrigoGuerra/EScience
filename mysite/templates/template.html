@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -19,32 +18,32 @@
     <meta name="google-signin-client_id"
           content="509268929644-6sgar4mtbl40qcqp8d30ibodaui636b7.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'Common/style.css' %}" />
-    <script type = 'text/javascript' src="{% static  'Common/script.js' %}"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Common/style.css' %}"/>
+    <script type='text/javascript' src="{% static  'Common/script.js' %}"></script>
 
     <script type="text/javascript">
-$(document).ready(function(){
-    $("#tabUsers a").click(function(e){
-    	e.preventDefault();
-    	$(this).tab('show');
-    });
+        $(document).ready(function () {
+            $("#tabUsers a").click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
 
-    var active = "{% block navigation %}{% endblock %}";
-    var titles = {
-        files: "Files",
-        groups: "Groups",
-        home: "Home",
-        login: "Login",
-        packs: "Packs",
-        scripts: "Scripts",
-        users: "Users",
-    };
-    if (active) {
-        $(".navbar-nav ." + active).addClass("active");
-        document.title = "MyScripts -   " + titles[active];
-    }
-});
+            var active = "{% block navigation %}{% endblock %}";
+            var titles = {
+                files: "Files",
+                groups: "Groups",
+                home: "Home",
+                login: "Login",
+                packs: "Packs",
+                scripts: "Scripts",
+                users: "Users",
+            };
+            if (active) {
+                $(".navbar-nav ." + active).addClass("active");
+                document.title = "MyScripts -   " + titles[active];
+            }
+        });
 
     </script>
 
@@ -107,6 +106,6 @@ $(document).ready(function(){
         </div>
     </div>
 
-</footer >
+</footer>
 </body>
 </html>

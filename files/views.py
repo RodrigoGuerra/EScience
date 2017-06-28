@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import get_template
 
+import libs.minio as minio
 from service.files import *
 
 
@@ -56,6 +57,22 @@ def insertFile(request):
         file = json.loads(request.body.decode("utf-8"))
         res = create_file(file)
         return JsonResponse(res, status=201)
+    else:
+        response_data = {
+            "result": "error",
+            "message": "Invalid method",
+        }
+        return JsonResponse(response_data, status=405)
+
+
+def uploadFile(request, file_id):
+    if (request.method == "PUT"):
+        try:
+            minio.client.put_object(minio.bucket, file_id, request, len(request.body), request.content_type)
+        except Exception as err:
+            return JsonResponse({"success": False}, status=500)
+            print(err)
+        return JsonResponse({"success": True}, status=200)
     else:
         response_data = {
             "result": "error",

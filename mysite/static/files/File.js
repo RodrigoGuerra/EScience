@@ -6,9 +6,9 @@ $(function () {
 function submitForm() {
     alert("Upload with sucess")
     var formData = {};
-    /*
-     files = $("#fileinput")[0].files;
 
+    var file = $("#fileinput")[0].files[0];
+    /*
      $.each(files, function (key, value) {
      formData.append('fileinput', value);
      });
@@ -39,14 +39,29 @@ function submitForm() {
     formData['Update'] = $("#FileUpdaters input:radio:checked").val();
     formData['License'] = $("#sel1");
 
+    var uploadFile = function (data) {
+        var id = data._id;
+        console.log(JSON.stringify(data, null, 2));
+
+        $.ajax({
+            url: window.location.pathname + '/UploadFile/' + id,
+            type: 'put',
+            success: function (data2) {
+                console.log("OK!!!");
+                console.log(JSON.stringify(data2, null, 2));
+            },
+            data: file
+        });
+    };
+
     $.ajax({
         url: window.location.pathname + '/InsertFile',
         type: 'post',
         dataType: 'json',
-        success: function (data) {
-            console.log(JSON.stringify(data, null, 2));
-        },
+        success: uploadFile,
         data: JSON.stringify(formData)
+    }).then(function (test) {
+        console.log(test)
     });
 }
 
