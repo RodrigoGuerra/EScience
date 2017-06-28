@@ -66,12 +66,14 @@ def insertFile(request):
 
 
 def uploadFile(request, file_id):
-    if (request.method == "PUT"):
+    if (request.method == "POST"):
         try:
-            minio.client.put_object(minio.bucket, file_id, request, len(request.body), request.content_type)
+            file = request.FILES['file']
+            print(file)
+            minio.client.put_object(minio.bucket, file_id, file, len(file), file.content_type)
         except Exception as err:
-            return JsonResponse({"success": False}, status=500)
             print(err)
+            return JsonResponse({"success": False}, status=500)
         return JsonResponse({"success": True}, status=200)
     else:
         response_data = {

@@ -8,16 +8,15 @@ function submitForm() {
     var formData = {};
 
     var file = $("#fileinput")[0].files[0];
-    /*
-     $.each(files, function (key, value) {
-     formData.append('fileinput', value);
-     });
-     */
+
+    var fd = new FormData();
+    fd.append('file', file);
+
     formData['Title'] = $("#titleinput").text();
 
     formData['Description'] = $("#textDescription").text();
 
-    var tags = []
+    var tags = [];
     $("#tagList").find('p').each(function (index, element) {
         tags.push({Name: element.text()});
     });
@@ -45,12 +44,24 @@ function submitForm() {
 
         $.ajax({
             url: window.location.pathname + '/UploadFile/' + id,
-            type: 'put',
+            type: 'POST',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (data2) {
                 console.log("OK!!!");
                 console.log(JSON.stringify(data2, null, 2));
             },
-            data: file
+            xhr: function () {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function () {
+                        /* faz alguma coisa durante o progresso do upload */
+                    }, false);
+                }
+                return myXhr;
+            }
         });
     };
 
